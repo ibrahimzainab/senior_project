@@ -24,6 +24,7 @@ class Body extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontFamily:
                   'senior_project/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-Bold.tff',
+              letterSpacing: 2,
             ),
           ),
           SizedBox(height: size.height * 0.02),
