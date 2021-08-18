@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/Screens/Login/components/already_have_an_account_check.dart';
 import 'package:senior_project/Screens/Login/components/background.dart';
+import 'package:senior_project/Screens/Login/components/roundedinputfield.dart';
+import 'package:senior_project/Screens/Login/components/roundedpasswordfield.dart';
+import 'package:senior_project/Screens/Welcome/components/roundedbutton.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -9,20 +13,35 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Background(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'LOGIN',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontFamily:
-                'senior_project/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-Bold.tff',
+    return SingleChildScrollView(
+      child: Background(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'LOGIN',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily:
+                  'senior_project/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-Bold.tff',
+            ),
           ),
-        ),
-        Image.asset('assets/icons/Plant - 2.png', height: size.height * 0.35),
-      ],
-    ));
+          SizedBox(height: size.height * 0.02),
+          Image.asset('assets/icons/Plant - 2.png', height: size.height * 0.35),
+          SizedBox(height: size.height * 0.02),
+          RoundedInputField(
+              icon: Icons.person,
+              hintText: "Your Email/ Phone Number",
+              onChanged: (value) {}),
+          RoundedPasswordField(onChanged: (value) {}),
+          RoundedButton(text: "LOGIN", press: () {}),
+          SizedBox(height: size.height * 0.02),
+          AlreadyHaveAnAccountCheck(
+            press: () {},
+            login: true,
+          )
+        ],
+      )),
+    );
   }
 }
