@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/Welcome/welcome_screen.dart';
 import 'package:senior_project/constants.dart';
+import 'package:senior_project/routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         
       ),
-      home: WelcomeScreen(),
+      initialRoute: '/mainPage',
+      routes: routes,
     );
   }
 }
