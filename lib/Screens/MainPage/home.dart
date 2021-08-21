@@ -84,7 +84,6 @@ class WeatherWidget extends StatefulWidget {
 }
 
 class _WeatherWidgetState extends State<WeatherWidget> {
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String>(
@@ -284,7 +283,13 @@ class _WeatherWidgetState extends State<WeatherWidget> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
-                  children: <Widget>[city, date, temperature, description, other],
+                  children: <Widget>[
+                    city,
+                    date,
+                    temperature,
+                    description,
+                    other
+                  ],
                 ),
               ),
             );
@@ -292,13 +297,10 @@ class _WeatherWidgetState extends State<WeatherWidget> {
           } else {
             return SizedBox(
               width: 400,
-              child: CircularProgressIndicator(
-              ),
+              child: CircularProgressIndicator(),
             );
           }
-        }
-    );
-
+        });
   }
 }
 

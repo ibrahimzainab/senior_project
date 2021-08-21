@@ -16,6 +16,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _bodyContent=[
     Home(),
     Garden(),
+    Home(),
     LoginScreen(),
     WelcomeScreen(),
   ];
@@ -40,6 +41,10 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.agriculture),
                 label: 'Garden',
+                backgroundColor: primaryColor),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.wysiwyg),
+                label: 'Catalogue',
                 backgroundColor: primaryColor),
             BottomNavigationBarItem(
                 icon: Icon(Icons.bug_report),

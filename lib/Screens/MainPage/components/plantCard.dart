@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/classes/plant.dart';
 
-class PlantCard extends StatefulWidget {
-  @override
-  _PlantCardState createState() => _PlantCardState();
-}
+class PlantCard extends StatelessWidget {
+  const PlantCard({
+    Key key,
+    @required this.plant,
+  }) : super(key: key);
 
-class _PlantCardState extends State<PlantCard> {
+  final Plant plant;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,8 +24,8 @@ class _PlantCardState extends State<PlantCard> {
                 borderRadius: BorderRadius.circular(15),
               ),
               //this child should be an image
-              child: Container(
-              ),
+              child: Image.asset(
+                  'assets/images/plant_grainy_illustration_alinashi.png'),
             ),
           ),
         ),
@@ -31,12 +34,19 @@ class _PlantCardState extends State<PlantCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'Name1',
+              '${plant.addedName}',
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.0),
+              maxLines: 2,
+            ),
+            SizedBox(height: 5),
+            Text(
+              '${plant.plantName}',
+              style: TextStyle(
+                  color: Colors.black, fontSize: 16, letterSpacing: 1.0),
               maxLines: 2,
             ),
             SizedBox(height: 10),
@@ -46,7 +56,7 @@ class _PlantCardState extends State<PlantCard> {
                     TextStyle(fontWeight: FontWeight.w600, color: Colors.amber),
                 children: [
                   TextSpan(
-                      text: '12/2/2021',
+                      text: '${plant.date}',
                       style: Theme.of(context).textTheme.bodyText1),
                 ],
               ),
