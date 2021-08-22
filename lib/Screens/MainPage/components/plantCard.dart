@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/classes/plant.dart';
 
-class PlantCard extends StatelessWidget {
+class PlantCard extends StatefulWidget {
   const PlantCard({
     Key key,
     @required this.plant,
@@ -9,6 +9,11 @@ class PlantCard extends StatelessWidget {
 
   final Plant plant;
 
+  @override
+  _PlantCardState createState() => _PlantCardState();
+}
+
+class _PlantCardState extends State<PlantCard> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -34,7 +39,7 @@ class PlantCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              '${plant.addedName}',
+              '${widget.plant.addedName}',
               style: TextStyle(
                   color: Colors.black,
                   fontSize: 20,
@@ -44,7 +49,7 @@ class PlantCard extends StatelessWidget {
             ),
             SizedBox(height: 5),
             Text(
-              '${plant.plantName}',
+              '${widget.plant.plantName}',
               style: TextStyle(
                   color: Colors.black, fontSize: 16, letterSpacing: 1.0),
               maxLines: 2,
@@ -56,7 +61,7 @@ class PlantCard extends StatelessWidget {
                     TextStyle(fontWeight: FontWeight.w600, color: Colors.amber),
                 children: [
                   TextSpan(
-                      text: '${plant.date}',
+                      text: '${widget.plant.date}',
                       style: Theme.of(context).textTheme.bodyText1),
                 ],
               ),

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/home.dart';
 import 'package:senior_project/Screens/MainPage/garden.dart';
 import 'package:senior_project/Screens/Login/login_screen.dart';
+import 'package:senior_project/Screens/Register/register_screen.dart';
 import 'package:senior_project/Screens/Welcome/welcome_screen.dart';
 import 'package:senior_project/constants.dart';
+
+import 'notes.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -16,9 +19,9 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _bodyContent=[
     Home(),
     Garden(),
-    Home(),
     LoginScreen(),
-    WelcomeScreen(),
+    RegisterScreen(),
+    Notes(),
   ];
 
   @override

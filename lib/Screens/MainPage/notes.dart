@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:senior_project/Screens/MainPage/components/plantCard.dart';
-import 'package:senior_project/classes/plant.dart';
-import 'package:senior_project/constants.dart';
+import 'package:senior_project/classes/note.dart';
+import '../../constants.dart';
+import 'components/noteCard.dart';
 
-class Garden extends StatefulWidget {
+class Notes extends StatefulWidget {
   @override
-  _GardenState createState() => _GardenState();
+  _NotesState createState() => _NotesState();
 }
 
-class _GardenState extends State<Garden> {
+class _NotesState extends State<Notes> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,17 +16,20 @@ class _GardenState extends State<Garden> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              Text(
-                'My Garden',
-                style: TextStyle(
-                  fontSize: 30.0,
+          SizedBox(
+            width: 370,
+            child: Row(
+              children: <Widget>[
+                Text(
+                  'My Notes',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                  ),
                 ),
-              ),
-              Spacer(),
-              IconButton(icon: Icon(Icons.add), onPressed: () {}),
-            ],
+                Spacer(),
+                IconButton(icon: Icon(Icons.add), onPressed: () {}),
+              ],
+            ),
           ),
           Divider(
             height: 30.0,
@@ -35,15 +38,15 @@ class _GardenState extends State<Garden> {
           Container(
             height: 620,
             child: ListView.builder(
-              itemCount: demoPlants.length,
+              itemCount: demoNotes.length,
               itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.fromLTRB(0,0,0,10.0),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 30.0),
                 child: Dismissible(
-                  key: Key(demoPlants[index].id.toString()),
+                  key: Key(demoNotes[index].id.toString()),
                   direction: DismissDirection.endToStart,
                   onDismissed: (direction) {
                     setState(() {
-                      demoPlants.removeAt(index);
+                      demoNotes.removeAt(index);
                     });
                   },
                   background: Container(
@@ -59,7 +62,9 @@ class _GardenState extends State<Garden> {
                       ],
                     ),
                   ),
-                  child: PlantCard(plant: demoPlants[index],),
+                  child: NoteCard(
+                    note: demoNotes[index],
+                  ),
                 ),
               ),
             ),

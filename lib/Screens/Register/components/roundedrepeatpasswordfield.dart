@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:senior_project/Screens/Login/components/textfieldcontainer.dart';
+import 'package:senior_project/Screens/Register/components/textfieldcontainer.dart';
 import 'package:senior_project/constants.dart';
 
-class RoundedInputField extends StatelessWidget {
-  final String hintText;
-  final IconData icon;
+class RoundedRepeatPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
-  const RoundedInputField({
+
+  const RoundedRepeatPasswordField({
     Key key,
-    this.hintText,
-    this.icon = Icons.person,
     this.onChanged,
   }) : super(key: key);
 
@@ -17,15 +14,17 @@ class RoundedInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFieldContainer(
         child: TextField(
-            obscureText: false,
+            obscureText: true,
             onChanged: onChanged,
             decoration: InputDecoration(
               icon: Icon(
-                icon,
+                Icons.lock,
                 color: kPrimaryColor,
               ),
-              hintText: hintText,
+              suffixIcon:
+              Icon(Icons.visibility, color: kPrimaryColor, size: 22),
               border: InputBorder.none,
+              hintText: "Repeat Password",
             )));
   }
 }
