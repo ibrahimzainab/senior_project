@@ -13,7 +13,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return bodyContent;
+    Size size = MediaQuery.of(context).size;
+    return bodyContent(context);
   }
 
   @override
@@ -23,45 +24,46 @@ class _HomeState extends State<Home> {
   }
 }
 
-Widget get bodyContent {
+Widget bodyContent (context){
+  Size size = MediaQuery.of(context).size;
   return Padding(
-    padding: EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 0.0),
+    padding: EdgeInsets.fromLTRB(size.width*0.03, size.height*0.04, size.width*0.03, 0.0),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         topMessageWidget,
         SizedBox(
-          height: 20.0,
+          height: size.height*0.03,
         ),
         SizedBox(
-          height: 350.0,
+          height: size.height*0.425,
           child: Container(
             child: WeatherWidget(),
           ),
         ),
-        SizedBox(height: 30.0),
+        SizedBox(height: size.height*0.03),
         SizedBox(
-          width: 400,
-          height: 70,
+          width: size.width,
+          height: size.height*0.09,
           child: newsWidget,
         ),
         SizedBox(
-          height: 20.0,
+          height: size.height*0.03,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(
-              width: 175,
-              height: 125,
+              width: size.width*0.44,
+              height: size.height*0.16,
               child: agriculturalCalenderWidget,
             ),
             SizedBox(
-              width: 20.0,
+              width: size.width*0.05,
             ),
             SizedBox(
-              width: 175,
-              height: 125,
+              width: size.width*0.44,
+              height: size.height*0.16,
               child: suggestionWidget,
             ),
           ],
@@ -86,6 +88,7 @@ class WeatherWidget extends StatefulWidget {
 class _WeatherWidgetState extends State<WeatherWidget> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return FutureBuilder<String>(
         future: getWeather(),
         builder: (context, AsyncSnapshot<String> snapshot) {
@@ -296,7 +299,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
             return container;
           } else {
             return SizedBox(
-              width: 400,
+              width: size.width,
               child: CircularProgressIndicator(),
             );
           }

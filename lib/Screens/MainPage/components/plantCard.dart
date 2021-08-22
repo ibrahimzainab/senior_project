@@ -16,6 +16,7 @@ class PlantCard extends StatefulWidget {
 class _PlantCardState extends State<PlantCard> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Row(
       children: <Widget>[
         SizedBox(
@@ -38,14 +39,17 @@ class _PlantCardState extends State<PlantCard> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              '${widget.plant.addedName}',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 1.0),
-              maxLines: 2,
+            SizedBox(
+              width: size.width*0.54,
+              child: Text(
+                '${widget.plant.addedName}',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.0),
+                maxLines: 2,
+              ),
             ),
             SizedBox(height: 5),
             Text(

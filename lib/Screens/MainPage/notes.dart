@@ -11,13 +11,14 @@ class Notes extends StatefulWidget {
 class _NotesState extends State<Notes> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 0.0),
+      padding: EdgeInsets.fromLTRB(size.width*0.04, size.height*0.04, size.width*0.04, 0.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SizedBox(
-            width: 370,
+            width: size.width,
             child: Row(
               children: <Widget>[
                 Text(
@@ -32,11 +33,11 @@ class _NotesState extends State<Notes> {
             ),
           ),
           Divider(
-            height: 30.0,
+            height: size.height*0.03,
           ),
           // TODO: Add Plants List
           Container(
-            height: 620,
+            height: size.height*0.8,
             child: ListView.builder(
               itemCount: demoNotes.length,
               itemBuilder: (context, index) => Padding(
