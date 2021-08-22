@@ -3,6 +3,7 @@ import 'package:senior_project/Screens/Login/components/already_have_an_account_
 import 'package:senior_project/Screens/Login/components/background.dart';
 import 'package:senior_project/Screens/Login/components/roundedinputfield.dart';
 import 'package:senior_project/Screens/Login/components/roundedpasswordfield.dart';
+import 'package:senior_project/Screens/Signup/signup_screen.dart';
 import 'package:senior_project/Screens/Welcome/components/roundedbutton.dart';
 
 class Body extends StatelessWidget {
@@ -38,7 +39,11 @@ class Body extends StatelessWidget {
           RoundedButton(text: "LOGIN", press: () {}),
           SizedBox(height: size.height * 0.02),
           AlreadyHaveAnAccountCheck(
-            press: () {},
+            press: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return SignUpScreen();
+              }));
+            },
             login: true,
           )
         ],
