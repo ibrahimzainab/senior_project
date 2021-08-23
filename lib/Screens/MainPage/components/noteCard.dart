@@ -59,6 +59,16 @@ class _NoteCardState extends State<NoteCard> {
                 maxLines: 2,
               ),
             ),
+            if(widget.note.reminder)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                      width:size.width*0.8,
+                  ),
+                  Icon(Icons.access_time)
+                ],
+              ),
           ],
         ),
       ],

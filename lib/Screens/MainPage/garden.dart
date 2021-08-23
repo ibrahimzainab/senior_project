@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCard.dart';
-import 'package:senior_project/classes/plant.dart';
+import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
 
 class Garden extends StatefulWidget {
@@ -36,15 +36,15 @@ class _GardenState extends State<Garden> {
           Container(
             height: size.height*0.8,
             child: ListView.builder(
-              itemCount: demoPlants.length,
+              itemCount: demoGardenPlants.length,
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.fromLTRB(0,0,0,10.0),
                 child: Dismissible(
-                  key: Key(demoPlants[index].id.toString()),
+                  key: Key(demoGardenPlants[index].id.toString()),
                   direction: DismissDirection.endToStart,
                   onDismissed: (direction) {
                     setState(() {
-                      demoPlants.removeAt(index);
+                      demoGardenPlants.removeAt(index);
                     });
                   },
                   background: Container(
@@ -60,7 +60,7 @@ class _GardenState extends State<Garden> {
                       ],
                     ),
                   ),
-                  child: PlantCard(plant: demoPlants[index],),
+                  child: PlantCard(plant: demoGardenPlants[index],),
                 ),
               ),
             ),

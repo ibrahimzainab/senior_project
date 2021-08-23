@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:senior_project/classes/note.dart';
 
 class Plant{
   int id;
-  String plantName,addedName;
-  String date;
-  String displayImage;
-  List<String> images;
-  List<Note> plantNotes;
+  String name,family,description,image,watering;
+  List<String> takingCare,howToPlant;
+  //List<Insect> insects;
+  // List<Article> articles;
+  //List<Disease> diseases;
 
   Plant({
     @required this.id,
-    @required this.plantName,
-    this.addedName,
-    @required this.date,
-    this.plantNotes
+    @required this.name,
+    @required this.family,
+    @required this.description,
+    this.image,
+    @required this.watering,
+    @required this.takingCare,
+    @required this.howToPlant,
+    //this.insects,
+    //this.diseases,
+    //this.articles,
   });
-
 }
 
 List<Plant> demoPlants = [
-  Plant(id: 1, plantName: 'Tomato', addedName: 'My tomatoes', date: DateTime.now().toString().split(' ')[0]),
-  Plant(id: 2, plantName: 'Potato', addedName: 'My Potatoes', date: DateTime.now().toString().split(' ')[0]),
-  Plant(id: 3, plantName: 'Carrot', addedName: 'My carrots', date: '2020-02-14'),
-  Plant(id: 4, plantName: 'Cucumber', addedName: 'My cucumbers', date: DateTime.now().toString().split(' ')[0]),
-  Plant(id: 5, plantName: 'Apples', addedName: 'My apples', date: DateTime.now().toString().split(' ')[0]),
-  Plant(id: 6, plantName: 'Mushroom', addedName: 'My balcony mushrooms', date: DateTime.now().toString().split(' ')[0]),
-  Plant(id: 7, plantName: 'Banana', addedName: 'My bananas', date: DateTime.now().toString().split(' ')[0]),
+  Plant(id: 1,name: 'Apple',family: 'fruits', description: 'An apple a day keeps the doctor away! A tree which grows apples, have you ever tasted apples who has not? Im just typing now cause I think this should be a big section boggle boggle', watering: 'once a day',takingCare: ['Do not cut it off','water the tree','get a life'],howToPlant: ['put the seeds','put dirt','put water','wait for it!']),Plant(id: 1,name: 'Apple',family: 'fruits', description: 'An apple a day keeps the doctor away! A tree which grows apples, have you ever tasted apples who has not? Im just typing now cause I think this should be a big section boggle boggle', watering: 'once a day',takingCare: ['Do not cut it off','water the tree','get a life'],howToPlant: ['put the seeds','put dirt','put water','wait for it!']),
+  Plant(id: 2,name: 'Apple',family: 'fruits', description: 'An apple a day keeps the doctor away! A tree which grows apples, have you ever tasted apples who has not? Im just typing now cause I think this should be a big section boggle boggle', watering: 'once a day',takingCare: ['Do not cut it off','water the tree','get a life'],howToPlant: ['put the seeds','put dirt','put water','wait for it!']),Plant(id: 1,name: 'Apple',family: 'fruits', description: 'An apple a day keeps the doctor away! A tree which grows apples, have you ever tasted apples who has not? Im just typing now cause I think this should be a big section boggle boggle', watering: 'once a day',takingCare: ['Do not cut it off','water the tree','get a life'],howToPlant: ['put the seeds','put dirt','put water','wait for it!']),
+  Plant(id: 3,name: 'Apple',family: 'fruits', description: 'An apple a day keeps the doctor away! A tree which grows apples, have you ever tasted apples who has not? Im just typing now cause I think this should be a big section boggle boggle', watering: 'once a day',takingCare: ['Do not cut it off','water the tree','get a life'],howToPlant: ['put the seeds','put dirt','put water','wait for it!']),Plant(id: 1,name: 'Apple',family: 'fruits', description: 'An apple a day keeps the doctor away! A tree which grows apples, have you ever tasted apples who has not? Im just typing now cause I think this should be a big section boggle boggle', watering: 'once a day',takingCare: ['Do not cut it off','water the tree','get a life'],howToPlant: ['put the seeds','put dirt','put water','wait for it!']),
+  Plant(id: 4,name: 'Apple',family: 'fruits', description: 'An apple a day keeps the doctor away! A tree which grows apples, have you ever tasted apples who has not? Im just typing now cause I think this should be a big section boggle boggle', watering: 'once a day',takingCare: ['Do not cut it off','water the tree','get a life'],howToPlant: ['put the seeds','put dirt','put water','wait for it!']),Plant(id: 1,name: 'Apple',family: 'fruits', description: 'An apple a day keeps the doctor away! A tree which grows apples, have you ever tasted apples who has not? Im just typing now cause I think this should be a big section boggle boggle', watering: 'once a day',takingCare: ['Do not cut it off','water the tree','get a life'],howToPlant: ['put the seeds','put dirt','put water','wait for it!']),
 ];

@@ -36,7 +36,7 @@ Widget bodyContent (context){
           height: size.height*0.03,
         ),
         SizedBox(
-          height: size.height*0.425,
+          height: size.height*0.426,
           child: Container(
             child: WeatherWidget(),
           ),
@@ -122,15 +122,12 @@ class _WeatherWidgetState extends State<WeatherWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Column(
-                  children: <Widget>[
                     Text(DateFormatter.date(weather.date),
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.black87,
-                        )),
-                  ],
-                ),
+                        )
+                    ),
               ],
             );
             Row temperature = Row(
