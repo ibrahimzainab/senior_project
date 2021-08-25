@@ -62,7 +62,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    SizedBox(height: 20),
+                    SizedBox(height: size.height * 0.02),
                     Text(weather.temperature.toString(),
                         style: TextStyle(
                           fontSize: 50,
@@ -76,7 +76,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                SizedBox(width: 9),
+                SizedBox(width: size.width * 0.01),
                 Text(weather.weatherDescription,
                     style: TextStyle(
                       fontSize: 19,
@@ -104,7 +104,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    SizedBox(height: 20),
+                    SizedBox(height: size.height * 0.02),
                     Row(
                       children: <Widget>[
                         Container(
@@ -116,22 +116,22 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                                     fontSize: 12,
                                     color: Colors.black87,
                                   )),
-                              SizedBox(height: 12),
+                              SizedBox(height: size.height * 0.01),
                               Text(weather.windSpeed.toString(),
                                   style: TextStyle(
                                     fontSize: 22,
                                     color: Colors.black87,
                                   )),
-                              SizedBox(height: 10),
+                              SizedBox(height: size.height * 0.01),
                               Text("m/s",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.black87,
                                   )),
-                              SizedBox(height: 7),
+                              SizedBox(height: size.height * 0.02),
                               SizedBox(
-                                height: 2,
-                                width: 80,
+                                height: size.height * 0.0025,
+                                width: size.width * 0.18,
                                 child: wind,
                               ),
                             ],
@@ -146,22 +146,22 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                                     fontSize: 12,
                                     color: Colors.black87,
                                   )),
-                              SizedBox(height: 12),
+                              SizedBox(height: size.height * 0.01),
                               Text(weather.pressure.toString(),
                                   style: TextStyle(
                                     fontSize: 22,
                                     color: Colors.black87,
                                   )),
-                              SizedBox(height: 10),
+                              SizedBox(height: size.height * 0.01),
                               Text("hPa",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.black87,
                                   )),
-                              SizedBox(height: 7),
+                              SizedBox(height: size.height * 0.02),
                               SizedBox(
-                                height: 2,
-                                width: 80,
+                                height: size.height * 0.0025,
+                                width: size.width * 0.18,
                                 child: pressurec,
                               ),
                             ],
@@ -176,22 +176,22 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                                     fontSize: 12,
                                     color: Colors.black87,
                                   )),
-                              SizedBox(height: 12),
+                              SizedBox(height: size.height * 0.01),
                               Text(weather.humidity.toString(),
                                   style: TextStyle(
                                     fontSize: 22,
                                     color: Colors.black87,
                                   )),
-                              SizedBox(height: 10),
+                              SizedBox(height: size.height * 0.01),
                               Text("%",
                                   style: TextStyle(
                                     fontSize: 12,
                                     color: Colors.black87,
                                   )),
-                              SizedBox(height: 7),
+                              SizedBox(height: size.height * 0.02),
                               SizedBox(
-                                height: 2,
-                                width: 80,
+                                height: size.height * 0.0025,
+                                width: size.width * 0.18,
                                 child: humidityc,
                               ),
                             ],
@@ -221,9 +221,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
             return container;
           } else {
             return SizedBox(
-              width: size.width,
-              child: CircularProgressIndicator(),
-            );
+                width: size.width, child: CircularProgressIndicator());
           }
         });
   }

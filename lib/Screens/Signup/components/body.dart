@@ -77,7 +77,7 @@ class _BodyState extends State<Body> {
                     context: context,
                     initialDate: DateTime.now(),
                     firstDate: DateTime(1950),
-                    lastDate: DateTime(2021));
+                    lastDate: DateTime(2050));
                 if (date != null)
                   dateController.text =
                       date.toLocal().toString().substring(0, 10);

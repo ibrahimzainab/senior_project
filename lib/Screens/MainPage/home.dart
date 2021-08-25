@@ -6,6 +6,7 @@ import 'package:senior_project/date_formatter.dart';
 import 'components/weatherwidget.dart';
 
 Weather weather;
+Size size;
 
 class Home extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _HomeState extends State<Home> {
 }
 
 Widget bodyContent(context) {
-  Size size = MediaQuery.of(context).size;
+  size = MediaQuery.of(context).size;
   return Padding(
     padding: EdgeInsets.fromLTRB(
         size.width * 0.05, size.height * 0.08, size.width * 0.05, 0.0),
@@ -126,7 +127,7 @@ Widget get newsWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset("assets/icons/newspaper.png"),
-          SizedBox(width: 10),
+          SizedBox(width: size.width * 0.02),
           Text(
             " What's new?",
             style: TextStyle(
@@ -158,9 +159,9 @@ Widget get agriculturalCalenderWidget {
         children: <Widget>[
           Image.asset(
             "assets/icons/calendar.png",
-            height: 50,
+            height: size.height * 0.06,
           ),
-          SizedBox(height: 15),
+          SizedBox(height: size.height * 0.02),
           Text(
             "Agricultural calendars",
             textAlign: TextAlign.center,
@@ -193,9 +194,9 @@ Widget get suggestionWidget {
         children: <Widget>[
           Image.asset(
             "assets/icons/consulting.png",
-            height: 55,
+            height: size.height * 0.06,
           ),
-          SizedBox(height: 15),
+          SizedBox(height: size.height * 0.02),
           Text(
             "Need a suggestion?",
             textAlign: TextAlign.center,
