@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:senior_project/classes/plant.dart';
+import 'package:senior_project/classes/savedPlant.dart';
 
 class PlantCard extends StatefulWidget {
   const PlantCard({
@@ -7,7 +7,7 @@ class PlantCard extends StatefulWidget {
     @required this.plant,
   }) : super(key: key);
 
-  final Plant plant;
+  final SavedPlant plant;
 
   @override
   _PlantCardState createState() => _PlantCardState();

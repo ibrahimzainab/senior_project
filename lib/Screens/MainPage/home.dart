@@ -135,7 +135,7 @@ Widget get newsWidget {
               letterSpacing: 1.0,
               fontSize: 40.0,
             ),
-          ),
+          )
         ],
       ),
     ),
