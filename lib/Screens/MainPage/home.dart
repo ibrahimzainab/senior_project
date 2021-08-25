@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather/weather.dart';
 import 'package:senior_project/constants.dart';
-import 'package:senior_project/date_formatter.dart';
-
 import 'components/weatherwidget.dart';
 
 Weather weather;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/date_formatter.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import '../home.dart';
 
@@ -221,7 +222,11 @@ class _WeatherWidgetState extends State<WeatherWidget> {
             return container;
           } else {
             return SizedBox(
-                width: size.width, child: CircularProgressIndicator());
+                width: size.width,
+                child: SpinKitDualRing(
+                  color: Colors.white,
+                  size: 50.0,
+                ));
           }
         });
   }
