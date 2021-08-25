@@ -13,7 +13,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return bodyContent(context);
   }
 
@@ -77,6 +76,7 @@ Future<String> getWeather() async {
   String _cityName = 'Beirut';
   WeatherFactory wf = new WeatherFactory(API_KEY);
   weather = await wf.currentWeatherByCityName(_cityName);
+  print(weather);
   return weather.toString();
 }
 
