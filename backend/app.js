@@ -10,7 +10,7 @@ require('./database/connection');
 
 const router = express.Router()
 
-//const userRoutes = require('./routes/user.route');
+const userRoutes = require('./database/userroute');
 
 app.use(cors());
 
@@ -23,7 +23,7 @@ app.use(bodyParser.json()); // to give Express the ability to read JSON payloads
 app.use(express.json());
 
 //router
-//app.use(userRoutes);
+app.use(userRoutes);
 
 
 // start server
@@ -32,7 +32,7 @@ app.set('port',port);
 
 
 //ip of connected wifi
-http.listen(1000, '192.168.1.8');
+http.listen(1000, '192.168.43.87');
 
 app.use(function (err, req, res, next) {
   console.error(err.message);
