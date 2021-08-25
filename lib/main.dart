@@ -16,11 +16,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
-        
       ),
       initialRoute: '/mainPage',
       routes: routes,
     );
   }
 }
-

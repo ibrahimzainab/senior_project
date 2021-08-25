@@ -116,7 +116,7 @@ Widget get newsWidget {
       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
-        side: BorderSide(color: Colors.green, width: 1),
+        side: BorderSide(color: kPrimaryColor, width: 1),
       )),
     ),
     onPressed: () {},
@@ -148,7 +148,7 @@ Widget get agriculturalCalenderWidget {
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20.0),
-      side: BorderSide(color: Colors.green, width: 1),
+      side: BorderSide(color: kPrimaryColor, width: 1),
     ))),
     onPressed: () {},
     child: Padding(
@@ -183,7 +183,7 @@ Widget get suggestionWidget {
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(20.0),
-      side: BorderSide(color: Colors.green, width: 1),
+      side: BorderSide(color: kPrimaryColor, width: 1),
     ))),
     onPressed: () {},
     child: Padding(

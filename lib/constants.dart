@@ -7,5 +7,8 @@ const String kPrimaryFont = 'Atkinson Hyperlegible';
 const Color primaryColor = Color(0xFF235049);
 const Color navBarUnselectedItemColor = Colors.grey;
 const Color navBarSelectedItemColor = Colors.white;
-const Color gradient1 = Color(0xFFE1B9B7);
-const Color gradient2 = Color(0xFF7CB7A3);
+const BoxShadow kBoxShadow = BoxShadow(
+  color: Colors.black12,
+  blurRadius: 25,
+  offset: Offset(0, 15),
+);

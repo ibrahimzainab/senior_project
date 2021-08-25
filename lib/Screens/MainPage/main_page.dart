@@ -13,9 +13,8 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-
-  int _currentIndex=0;
-  final List<Widget> _bodyContent=[
+  int _currentIndex = 0;
+  final List<Widget> _bodyContent = [
     Home(),
     Garden(),
     LoginScreen(),
@@ -33,6 +32,7 @@ class _MainPageState extends State<MainPage> {
           topLeft: Radius.circular(30),
         ),
         child: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
           onTap: onIconTapped,
           currentIndex: _currentIndex,
           items: [
@@ -65,10 +65,9 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  void onIconTapped(int index){
+  void onIconTapped(int index) {
     setState(() {
       _currentIndex = index;
-    }
-    );
+    });
   }
 }
