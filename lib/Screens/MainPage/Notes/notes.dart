@@ -52,6 +52,11 @@ class _NotesState extends State<Notes> {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => EditNote(note: demoNotes[index],)));
+                    /* TODO:must update the list after pop
+                    setState(() {
+
+                    });
+                     */
                   },
                   child: Dismissible(
                     key: Key(demoNotes[index].id.toString()),
