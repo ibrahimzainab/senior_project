@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/Screens/MainPage/catalog.dart';
 import 'package:senior_project/Screens/MainPage/home.dart';
 import 'package:senior_project/Screens/MainPage/garden.dart';
 import 'package:senior_project/Screens/Login/login_screen.dart';
@@ -18,7 +19,7 @@ class _MainPageState extends State<MainPage> {
     Home(),
     Garden(),
     LoginScreen(),
-    RegisterScreen(),
+    Catalog(),
     Notes(),
   ];
 
@@ -39,23 +40,23 @@ class _MainPageState extends State<MainPage> {
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
-                backgroundColor: primaryColor),
+                backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(
                 icon: Icon(Icons.agriculture),
                 label: 'Garden',
-                backgroundColor: primaryColor),
+                backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(
                 icon: Icon(Icons.wysiwyg),
-                label: 'Catalogue',
-                backgroundColor: primaryColor),
+                label: 'Articles',
+                backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(
                 icon: Icon(Icons.bug_report),
                 label: 'Insects',
-                backgroundColor: primaryColor),
+                backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(
                 icon: Icon(Icons.note),
                 label: 'Notes',
-                backgroundColor: primaryColor),
+                backgroundColor: kPrimaryColor),
           ],
           unselectedItemColor: navBarUnselectedItemColor,
           selectedItemColor: navBarSelectedItemColor,
