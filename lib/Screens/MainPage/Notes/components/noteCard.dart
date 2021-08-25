@@ -25,21 +25,21 @@ class _NoteCardState extends State<NoteCard> {
             Row(
               children: [
                 SizedBox(
-                  width: size.width*0.7,
+                  width: size.width * 0.7,
                   child: Text(
-                  '${widget.note.title}',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.0),
-                  maxLines: 1,
+                    '${widget.note.title}',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.0),
+                    maxLines: 1,
                   ),
                 ),
                 Text.rich(
                   TextSpan(
-                    style:
-                    TextStyle(fontWeight: FontWeight.w600, color: Colors.amber),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600, color: Colors.amber),
                     children: [
                       TextSpan(
                           text: '${widget.note.date}',
@@ -59,12 +59,12 @@ class _NoteCardState extends State<NoteCard> {
                 maxLines: 2,
               ),
             ),
-            if(widget.note.reminder)
+            if (widget.note.reminder)
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   SizedBox(
-                      width:size.width*0.8,
+                    width: size.width * 0.8,
                   ),
                   Icon(Icons.access_time)
                 ],

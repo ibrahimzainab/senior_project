@@ -4,7 +4,7 @@ class Note{
 
   int id;
   String title,text;
-  List<String> images;
+  String image;
   bool reminder;
   String date;
 
@@ -13,20 +13,22 @@ class Note{
     this.title,
     @required this.text,
     this.reminder = false,
-    this.images,
+    this.image,
     this.date,
   });
 
   void addImage(String image){
-    images.add(image);
-  }
-
-  void removeImage(String image){
-    images.remove(image);
+    this.image =image;
   }
 
   void editText(String text){
     this.text =text;
+    //edit in db
+  }
+
+  void editTitle(String title){
+    this.title = title;
+    //edit in db
   }
 }
 

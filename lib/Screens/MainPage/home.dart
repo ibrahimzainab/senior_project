@@ -87,6 +87,7 @@ Future<String> getWeather() async {
   String _cityName = 'Beirut';
   WeatherFactory wf = new WeatherFactory(API_KEY);
   weather = await wf.currentWeatherByCityName(_cityName);
+  print(weather);
   return weather.toString();
 }
 

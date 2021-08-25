@@ -7,4 +7,5 @@ final Map<String, WidgetBuilder> routes = {
   '/mainPage': (context) => MainPage(),
   '/login': (context) => LoginScreen(),
   '/welcome': (context) => WelcomeScreen(),
+  //'/addNote': (context) => AddNote(),
 };
