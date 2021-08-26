@@ -41,5 +41,5 @@ List<Note> demoNotes = [
   Note(id: 6,title: 'Another test but this time its a long title instead! Lets see what happens',text: 'My apples are dead!',date: DateTime.now().toString().split(' ')[0]),
   Note(id: 7,title: 'Tests',text: 'My apples are dead!',date: DateTime.now().toString().split(' ')[0]),
   Note(id: 8,title: 'Tests',text: 'My apples are dead!',date: DateTime.now().toString().split(' ')[0]),
-  Note(id: 9,title: 'Tests',text: 'My apples are dead!',date: DateTime.now().toString().split(' ')[0]),
+  Note(id: 9,title: 'Tests',text: 'My apples are dead!',date: DateTime.now().toString().split(' ')[0],reminder: true),
 ];

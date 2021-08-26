@@ -12,5 +12,33 @@ const BoxShadow kBoxShadow = BoxShadow(
   blurRadius: 25,
   offset: Offset(0, 15),
 );
+const List<String> spinnerItems = [
+  'Aakkar',
+  'Aaley',
+  'Baabda',
+  'Baalbeck',
+  'Batroun',
+  'Bcharreh',
+  'Beirut',
+  'Bent Jbail',
+  'Chouf',
+  'Hasbaya',
+  'Hermel',
+  'Jbeil',
+  'Jezzine',
+  'Keserwan',
+  'Koura',
+  'Nabatiyeh',
+  'Matn',
+  'Marjaayoun',
+  'Minieh-Dannieh',
+  'Rachaiya',
+  'Saida',
+  'Tripoli',
+  'Tyr',
+  'West Beqaa',
+  'Zahle',
+  'Zgharta'
+];
 const Color lightGreen = Color(0xFFA0B976);
 const Color brown = Color(0xFF490A04);

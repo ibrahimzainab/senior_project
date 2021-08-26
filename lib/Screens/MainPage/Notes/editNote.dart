@@ -31,9 +31,6 @@ class _EditNoteState extends State<EditNote> {
     final _titleFocus = FocusNode();
     final _contentFocus = FocusNode();
 
-    String initialText = widget.note.text;
-
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -51,20 +48,33 @@ class _EditNoteState extends State<EditNote> {
           ),
         ),
         actions: [
+          reminderWidget,
           IconButton(
               icon: Icon(
                 Icons.check,
                 color: Colors.black,
               ),
               onPressed: () {
-                if (_titleController.text != widget.note.title) {
-                  widget.note.editTitle(_titleController.text);
+                if(_titleController.text =='' || _textController.text =='') {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          "Title and text can't be empty!"
+                        ),
+                      )
+                  );
                 }
-                if (_textController.text != widget.note.text) {
-                  widget.note.editText(_textController.text);
+                else{
+                  if (_titleController.text != widget.note.title) {
+                    widget.note.editTitle(_titleController.text);
+                  }
+                  if (_textController.text != widget.note.text) {
+                    widget.note.editText(_textController.text);
+                  }
+                  Navigator.pop(context);
                 }
-                Navigator.pop(context);
-              }),
+              },
+          ),
         ],
       ),
       body: Padding(
@@ -111,4 +121,26 @@ class _EditNoteState extends State<EditNote> {
       ),
     );
   }
+
+  Widget get reminderWidget{
+    Color color;
+    if(widget.note.reminder)
+      color = Colors.black;
+    else color = Colors.grey;
+
+    return IconButton(
+      icon: Icon(
+        Icons.access_time,
+        color: color,
+      ),
+      onPressed: (){
+        if(widget.note.reminder=false){
+          widget.note.reminder =true;
+        }
+        else
+          widget.note.reminder=false;
+      },
+    );
+  }
 }
+
