@@ -18,6 +18,20 @@ class _ViewPlantState extends State<ViewPlant> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Details'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.notifications),
+              onPressed: (){},
+          ),
+          IconButton(
+            icon: Icon(Icons.bug_report),
+            onPressed: (){},
+          ),
+          IconButton(
+            icon: Icon(Icons.article),
+            onPressed: (){},
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(

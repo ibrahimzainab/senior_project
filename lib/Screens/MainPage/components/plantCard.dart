@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/Notes/components/noteCard.dart';
 import 'package:senior_project/classes/note.dart';
+import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
 
+import '../viewPlant.dart';
 import 'gardenNoteCard.dart';
 
 class PlantCard extends StatefulWidget {
@@ -19,137 +21,152 @@ class PlantCard extends StatefulWidget {
 }
 
 class _PlantCardState extends State<PlantCard> {
-
   bool extended = false;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     BoxShadow elevation;
-    if(extended)
+    if (extended)
       elevation = BoxShadow(
         color: Colors.black45,
         blurRadius: 25,
         offset: Offset(0, 15),
       );
-    else elevation = kBoxShadow;
+    else
+      elevation = kBoxShadow;
     return Column(
       children: [
-        Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: size.width * 0.04,
-          ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(22),
-            color: kPrimaryLightColor,
-            boxShadow: [elevation],
-          ),
-          height: size.height * 0.15,
+        GestureDetector(
+          onTap: () {
+            // TODO: must search for plant in catalogue
+            // this is a saved plant we need to display the catalogue plant details so we need to send to the viewPlant the plant in the catalogue which is of type plant not savedPlant
+            // we are using demoPlants now just to check if it works
+            // since demoPlants only has 3 items in the list only the first 3 cards work.
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ViewPlant(
+                          plant: demoPlants[0],
+                        )));
+          },
           child: Container(
-            margin: EdgeInsets.only(right: size.width * 0.02),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(22),
+            margin: EdgeInsets.symmetric(
+              horizontal: size.width * 0.04,
             ),
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(
-                  size.width * 0.02, size.height * 0.01, 0, size.height * 0.01),
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    width: size.width * 0.25,
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: Container(
-                        padding: EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: kPrimaryLightColor,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        //this child should be an image
-                        child: Hero(
-                          tag: 'details-${widget.plant.id}',
-                          child: Image.asset(
-                              'assets/images/plant_grainy_illustration_alinashi.png'),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(22),
+              color: kPrimaryLightColor,
+              boxShadow: [elevation],
+            ),
+            height: size.height * 0.15,
+            child: Container(
+              margin: EdgeInsets.only(right: size.width * 0.02),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(22),
+              ),
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(size.width * 0.02,
+                    size.height * 0.01, 0, size.height * 0.01),
+                child: Row(
+                  children: <Widget>[
+                    SizedBox(
+                      width: size.width * 0.25,
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: Container(
+                          padding: EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: kPrimaryLightColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          //this child should be an image
+                          child: Hero(
+                            tag: 'details-${widget.plant.id}',
+                            child: Image.asset(
+                                'assets/images/plant_grainy_illustration_alinashi.png'),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: size.width * 0.03),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        width: size.width * 0.4,
-                        child: Text(
-                          '${widget.plant.addedName}',
+                    SizedBox(width: size.width * 0.03),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          width: size.width * 0.4,
+                          child: Text(
+                            '${widget.plant.addedName}',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 1.0),
+                            maxLines: 1,
+                          ),
+                        ),
+                        SizedBox(height: size.height * 0.005),
+                        Text(
+                          '${widget.plant.plantName}',
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
                               letterSpacing: 1.0),
                           maxLines: 1,
                         ),
-                      ),
-                      SizedBox(height: size.height * 0.005),
-                      Text(
-                        '${widget.plant.plantName}',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            letterSpacing: 1.0),
-                        maxLines: 1,
-                      ),
-                      SizedBox(height: size.height * 0.01),
-                      Text.rich(
-                        TextSpan(
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, color: Colors.amber),
-                          children: [
-                            TextSpan(
-                                text: '${widget.plant.date}',
-                                style: Theme.of(context).textTheme.bodyText1),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                  Spacer(),
-                  if (!extended)
-                    IconButton(
-                      icon: Icon(Icons.arrow_drop_down),
-                      onPressed: () {
-                        // TODO: Extend card when pressed
-                        setState(() {
-                          if (extended == true)
-                            extended = false;
-                          else
-                            extended = true;
-                        });
-                      },
+                        SizedBox(height: size.height * 0.01),
+                        Text.rich(
+                          TextSpan(
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.amber),
+                            children: [
+                              TextSpan(
+                                  text: '${widget.plant.date}',
+                                  style: Theme.of(context).textTheme.bodyText1),
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                  if (extended)
-                    IconButton(
-                      icon: Icon(Icons.arrow_drop_up),
-                      onPressed: () {
-                        // TODO: Extend card when pressed
-                        setState(() {
-                          if (extended == true)
-                            extended = false;
-                          else
-                            extended = true;
-                        });
-                      },
-                    ),
-                ],
+                    Spacer(),
+                    if (!extended)
+                      IconButton(
+                        icon: Icon(Icons.arrow_drop_down),
+                        onPressed: () {
+                          // TODO: Extend card when pressed
+                          setState(() {
+                            if (extended == true)
+                              extended = false;
+                            else
+                              extended = true;
+                          });
+                        },
+                      ),
+                    if (extended)
+                      IconButton(
+                        icon: Icon(Icons.arrow_drop_up),
+                        onPressed: () {
+                          // TODO: Extend card when pressed
+                          setState(() {
+                            if (extended == true)
+                              extended = false;
+                            else
+                              extended = true;
+                          });
+                        },
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-        if(extended)
+        if (extended)
           SizedBox(
-            height: size.height*0.01,
+            height: size.height * 0.01,
           ),
         if (extended)
           SizedBox(

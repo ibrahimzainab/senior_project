@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
+
+import '../viewPlant.dart';
 
 class PlantCatalogCard extends StatefulWidget {
   const PlantCatalogCard({
@@ -19,7 +22,14 @@ class _PlantCatalogCardState extends State<PlantCatalogCard> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ViewPlant(
+                  plant: demoPlants[0],
+                )));
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -50,11 +60,12 @@ class _PlantCatalogCardState extends State<PlantCatalogCard> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         //this child should be an image
-                        child: Hero(
-                          tag: 'details-${widget.plant.id}',
-                          child: Image.asset(
-                              'assets/images/plant_grainy_illustration_alinashi.png'),
-                        ),
+                          child: Hero(
+                            tag: 'details-${widget.plant.id}',
+                            child: Image.asset(
+                                'assets/images/plant_grainy_illustration_alinashi.png'),
+                          ),
+
                       ),
                     ),
                   ),
