@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:weather/weather.dart';
 import 'package:senior_project/constants.dart';
 import 'components/weatherwidget.dart';
@@ -130,7 +131,9 @@ Widget get newsWidget {
         side: BorderSide(color: kPrimaryColor, width: 1),
       )),
     ),
-    onPressed: () {},
+    onPressed: () {
+      _showNotification();
+    },
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -220,5 +223,33 @@ Widget get suggestionWidget {
         ],
       ),
     ),
+  );
+}
+
+FlutterLocalNotificationsPlugin localNotification;
+
+Future _showNotification() async {
+  var androidInitialize = AndroidInitializationSettings(
+      'water_notification_icon');
+  var iOSInitialize = IOSInitializationSettings();
+  var initializationSettings = InitializationSettings(
+      android: androidInitialize, iOS: iOSInitialize);
+
+  localNotification = FlutterLocalNotificationsPlugin();
+
+  localNotification.initialize(initializationSettings);
+  var androidDetails = AndroidNotificationDetails("channelId",
+      "Local Notification",
+      "This is the description!",
+      importance: Importance.high
+  );
+  var iOSDetails = IOSNotificationDetails();
+  var generalNotificationDetails = NotificationDetails(
+      android: androidDetails, iOS: iOSDetails);
+  await localNotification.show(
+      0,
+      'Water plant',
+      'its time for you to water your plants',
+      generalNotificationDetails
   );
 }
