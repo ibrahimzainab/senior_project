@@ -22,6 +22,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getWeather();
+    _showNotification();
   }
 }
 
@@ -131,9 +132,7 @@ Widget get newsWidget {
         side: BorderSide(color: kPrimaryColor, width: 1),
       )),
     ),
-    onPressed: () {
-      _showNotification();
-    },
+    onPressed: () {},
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -246,10 +245,21 @@ Future _showNotification() async {
   var iOSDetails = IOSNotificationDetails();
   var generalNotificationDetails = NotificationDetails(
       android: androidDetails, iOS: iOSDetails);
+
   await localNotification.show(
       0,
       'Water plant',
       'its time for you to water your plants',
       generalNotificationDetails
+  );
+  
+  localNotification.zonedSchedule(
+      1,
+      "Task",
+      "Scheduled notification",
+      DateTime.now().add(Duration(seconds: 5)),
+      generalNotificationDetails,
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      androidAllowWhileIdle: true
   );
 }
