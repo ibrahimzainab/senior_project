@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCard.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCatalogCard.dart';
+import 'package:senior_project/Screens/MainPage/viewPlant.dart';
+import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
 
@@ -57,7 +59,6 @@ class _CatalogState extends State<Catalog> {
                       hintText: 'Search',
                       hintStyle: TextStyle(color: Colors.white),
                     ))),
-            // TODO: Add Plants List
             Expanded(
               child: Stack(children: <Widget>[
                 Container(
@@ -78,33 +79,21 @@ class _CatalogState extends State<Catalog> {
                   ),
                   itemBuilder: (context, index) => Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-                    child: Dismissible(
-                      key: Key(demoGardenPlants[index].id.toString()),
-                      direction: DismissDirection.endToStart,
-                      onDismissed: (direction) {
-                        setState(() {
-                          demoGardenPlants.removeAt(index);
-                        });
+                    child: GestureDetector(
+                      onTap: () {
+                         Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ViewPlant(
+                                  plant: demoPlants[index],
+                                )));
                       },
-                      background: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: kPrimaryLightColor,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Row(
-                          children: [
-                            Spacer(),
-                            Icon(Icons.delete),
-                          ],
-                        ),
-                      ),
                       child: PlantCatalogCard(
-                        plant: demoGardenPlants[index],
+                          plant: demoGardenPlants[index],
+                        ),
                       ),
                     ),
                   ),
-                ),
               ]),
             ),
           ],

@@ -6,8 +6,6 @@ import 'package:senior_project/constants.dart';
 
 import 'gardenNoteCard.dart';
 
-bool extended = false;
-
 class PlantCard extends StatefulWidget {
   const PlantCard({
     Key key,
@@ -21,6 +19,9 @@ class PlantCard extends StatefulWidget {
 }
 
 class _PlantCardState extends State<PlantCard> {
+
+  bool extended = false;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

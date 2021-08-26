@@ -50,8 +50,11 @@ class _PlantCatalogCardState extends State<PlantCatalogCard> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         //this child should be an image
-                        child: Image.asset(
-                            'assets/images/plant_grainy_illustration_alinashi.png'),
+                        child: Hero(
+                          tag: 'details-${widget.plant.id}',
+                          child: Image.asset(
+                              'assets/images/plant_grainy_illustration_alinashi.png'),
+                        ),
                       ),
                     ),
                   ),
