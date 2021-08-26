@@ -24,6 +24,14 @@ class _PlantCardState extends State<PlantCard> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    BoxShadow elevation;
+    if(extended)
+      elevation = BoxShadow(
+        color: Colors.black45,
+        blurRadius: 25,
+        offset: Offset(0, 15),
+      );
+    else elevation = kBoxShadow;
     return Column(
       children: [
         Container(
@@ -33,7 +41,7 @@ class _PlantCardState extends State<PlantCard> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(22),
             color: kPrimaryLightColor,
-            boxShadow: [kBoxShadow],
+            boxShadow: [elevation],
           ),
           height: size.height * 0.15,
           child: Container(
