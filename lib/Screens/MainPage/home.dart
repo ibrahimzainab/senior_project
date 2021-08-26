@@ -51,10 +51,14 @@ Widget bodyContent(context) {
         ),
         SizedBox(height: size.height * 0.03),
         Container(
-          width: size.width,
-          height: size.height * 0.09,
-          child: newsWidget,
-        ),
+            width: size.width,
+            height: size.height * 0.09,
+            child: newsWidget,
+            decoration: BoxDecoration(
+              boxShadow: [kBoxShadow],
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20.0),
+            )),
         SizedBox(
           height: size.height * 0.03,
         ),
@@ -62,18 +66,26 @@ Widget bodyContent(context) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              width: size.width * 0.43,
-              height: size.height * 0.18,
-              child: agriculturalCalenderWidget,
-            ),
+                width: size.width * 0.43,
+                height: size.height * 0.18,
+                child: agriculturalCalenderWidget,
+                decoration: BoxDecoration(
+                  boxShadow: [kBoxShadow],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0),
+                )),
             SizedBox(
               width: size.width * 0.04,
             ),
             Container(
-              width: size.width * 0.43,
-              height: size.height * 0.18,
-              child: suggestionWidget,
-            ),
+                width: size.width * 0.43,
+                height: size.height * 0.18,
+                child: suggestionWidget,
+                decoration: BoxDecoration(
+                  boxShadow: [kBoxShadow],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20.0),
+                )),
           ],
         )
       ],

@@ -14,3 +14,4 @@ const BoxShadow kBoxShadow = BoxShadow(
 );
 const Color lightGreen = Color(0xFFA0B976);
 const Color brown = Color(0xFF490A04);
+const String host = "http://192.168.0.106:1000";
