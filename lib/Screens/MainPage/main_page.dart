@@ -8,6 +8,7 @@ import 'package:senior_project/Screens/Welcome/welcome_screen.dart';
 import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
 import 'Notes/notes.dart';
+import 'articles.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -21,8 +22,8 @@ class _MainPageState extends State<MainPage> {
   List<Widget> _bodyContent = [
     Home(),
     Garden(),
-    LoginScreen(),
     Catalog(),
+    Articles(),
     Notes(),
   ];
 
