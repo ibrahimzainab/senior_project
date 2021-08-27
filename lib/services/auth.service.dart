@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:senior_project/classes/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:senior_project/constants.dart';
@@ -49,8 +50,15 @@ class AuthService {
       list = User(user);
       return list;
     } else {
-      
+      Fluttertoast.showToast(
+          msg: json.decode(response.body)['message'],
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return null;
     }
-    
   }
 }
