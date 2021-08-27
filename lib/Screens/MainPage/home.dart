@@ -4,6 +4,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:weather/weather.dart';
 import 'package:senior_project/constants.dart';
 import 'components/weatherwidget.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 Weather weather;
 Size size;
@@ -249,8 +251,11 @@ Future _showNotification() async {
   await localNotification.show(0, 'Water plant',
       'its time for you to water your plants', generalNotificationDetails);
 
+  tz.initializeTimeZones();
+
   localNotification.zonedSchedule(1, "Task", "Scheduled notification",
-      DateTime.now().add(Duration(seconds: 5)), generalNotificationDetails,
+      tz.TZDateTime.now(tz.local).add(Duration(seconds: 15)),
+      generalNotificationDetails,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       androidAllowWhileIdle: true);
