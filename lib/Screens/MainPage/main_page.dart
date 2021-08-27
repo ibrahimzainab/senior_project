@@ -5,17 +5,20 @@ import 'package:senior_project/Screens/MainPage/garden.dart';
 import 'package:senior_project/Screens/Login/login_screen.dart';
 import 'package:senior_project/Screens/Register/register_screen.dart';
 import 'package:senior_project/Screens/Welcome/welcome_screen.dart';
+import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
 import 'Notes/notes.dart';
 
 class MainPage extends StatefulWidget {
+  const MainPage({Key key}) : super(key: key);
   @override
   _MainPageState createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
+  User user;
   int _currentIndex = 0;
-  final List<Widget> _bodyContent = [
+  List<Widget> _bodyContent = [
     Home(),
     Garden(),
     LoginScreen(),

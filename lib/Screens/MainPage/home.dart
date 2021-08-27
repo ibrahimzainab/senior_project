@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:senior_project/classes/user.dart';
 import 'package:weather/weather.dart';
 import 'package:senior_project/constants.dart';
 import 'components/weatherwidget.dart';
@@ -7,6 +9,7 @@ Weather weather;
 Size size;
 
 class Home extends StatefulWidget {
+  const Home({Key key}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
@@ -110,9 +113,9 @@ Widget get topMessageWidget {
         letterSpacing: 1.0,
         color: Colors.black,
       ),
-      children: const <TextSpan>[
+      children: <TextSpan>[
         TextSpan(
-            text: 'username',
+            text: '${User.user.name}',
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: Color(0xFFBF365A))),
         TextSpan(text: ',\nSuch a beautiful day!'),

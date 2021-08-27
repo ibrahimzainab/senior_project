@@ -9,5 +9,7 @@ router.get('/', (req, res) => {
 
 router.post('/register', actions.register)
 router.post('/login', actions.login)
+router.post('/getPlants', actions.getPlants)
+router.post('/getSavedPlants', actions.getSavedPlants)
 
 module.exports = router;

@@ -32,7 +32,7 @@ app.set('port',port);
 
 
 //ip of connected wifi
-http.listen(1000, '192.168.43.87');
+http.listen(1000, '192.168.1.10');
 
 app.use(function (err, req, res, next) {
   console.error(err.message);

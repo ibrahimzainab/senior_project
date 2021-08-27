@@ -7,20 +7,21 @@ const db = require('../database/connection')
 exports.register = async (req, res, next) => {
 	let user;
 	
-	if((!req.body.name) || (!req.body.username) || (!req.body.password) || (!req.body.region) || (!req.body.major)) {
+	if((!req.body.name) || (!req.body.username) || (!req.body.password) || (!req.body.region) || (!req.body.major) || (!req.body.birthDate)) {
            return res.json({error: 'Enter all fields' })
 	}
 	
 	await bcrypt.hash(req.body.password, 10, function(err,hash){
         if(err) throw err;
-
         user = {
         name: req.body.name,
         username: req.body.username,
+        birthDate: req.body.birthDate,
         major: req.body.major,
         region: req.body.region,
         password: hash,
-        optionalContact: req.body.optionalContact
+        email: req.body.email,
+        phone: req.body.phone,
         }
     
     var sql = 'SELECT * FROM mydatabase.user WHERE username = ?';
@@ -33,7 +34,7 @@ exports.register = async (req, res, next) => {
     }
     else {
         var sql = 'INSERT INTO mydatabase.user SET ?';
-        db.query(sql, user, function (err, data) {
+        db.query(sql, user, function (err, row) {
             if(err) {
                 return res.status(500).send(
                 {
@@ -43,6 +44,7 @@ exports.register = async (req, res, next) => {
             return res.status(201).json(
             {
                message: 'User created successfully!',
+               result: user,
             });
         });
         
@@ -85,4 +87,31 @@ exports.login = async (req, res, next) => {
     }});
 }
 
+exports.getPlants = async (req, res, next) => {
+    var sql = "SELECT * FROM mydatabase.plant";
+    db.query(sql, function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {
+            return res.status(201).json({
+                plants: data,
+            })
+        }
+    })
+}
 
+exports.getSavedPlants = async (req, res, next) => {
+    var userId = req.body.id;
+    var sql = "SELECT * FROM mydatabase.savedplant P, mydatabase.user U WHERE P.iduser=U.iduser AND U.iduser = "+userId;
+    db.query(sql, function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {
+            return res.status(201).json({
+                plants: data,
+            })
+        }
+    })
+}

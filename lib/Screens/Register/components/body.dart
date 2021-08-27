@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/Login/components/already_have_an_account_check.dart';
 import 'package:senior_project/Screens/Login/components/textfieldcontainer.dart';
+import 'package:senior_project/Screens/MainPage/home.dart';
+import 'package:senior_project/Screens/MainPage/main_page.dart';
 import 'package:senior_project/Screens/Register/components/background.dart';
 import 'package:senior_project/Screens/Register/components/roundedinputfield.dart';
 import 'package:senior_project/Screens/Register/components/roundedpasswordfield.dart';
 import 'package:senior_project/Screens/Welcome/components/roundedbutton.dart';
+import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
+import 'package:senior_project/services/auth.service.dart';
 
 String dropdownValue = 'Beirut';
+AuthService _authService = AuthService();
 
 class Body extends StatefulWidget {
   const Body({
@@ -20,6 +25,13 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   final dateController = TextEditingController();
+  final usernameController = TextEditingController();
+  final nameController = TextEditingController();
+  final majorController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final regionController = TextEditingController();
+  final passwordController = TextEditingController();
 
   void dispose() {
     dateController.dispose();
@@ -45,15 +57,23 @@ class _BodyState extends State<Body> {
           ),
           SizedBox(height: size.height * 0.02),
           RoundedInputField(
-              icon: Icons.person,
-              hintText: "Username",
-              onChanged: (value) {}),
+            icon: Icons.person,
+            hintText: "Username",
+            onChanged: (value) {},
+            textEditingController: usernameController,
+          ),
+          RoundedInputField(
+            icon: Icons.person,
+            hintText: "Name",
+            onChanged: (value) {},
+            textEditingController: nameController,
+          ),
           TextFieldContainer(
               child: TextField(
                   readOnly: true,
                   controller: dateController,
                   decoration: InputDecoration(
-                    icon: Icon(Icons.date_range, color : kPrimaryColor),
+                    icon: Icon(Icons.date_range, color: kPrimaryColor),
                     hintText: 'Birth Date',
                     border: InputBorder.none,
                   ),
@@ -62,18 +82,20 @@ class _BodyState extends State<Body> {
                         context: context,
                         initialDate: DateTime.now(),
                         firstDate: DateTime(1950),
-                        lastDate: DateTime(2021));
+                        lastDate: DateTime(2050));
                     if (date != null)
                       dateController.text =
                           date.toLocal().toString().substring(0, 10);
                   })),
           TextFieldContainer(
               child: TextField(
-                  decoration: InputDecoration(
-                    icon: Icon(Icons.work, color: kPrimaryColor),
-                    hintText: "Major",
-                    border: InputBorder.none,
-                  ))),
+            decoration: InputDecoration(
+              icon: Icon(Icons.work, color: kPrimaryColor),
+              hintText: "Major",
+              border: InputBorder.none,
+            ),
+            controller: majorController,
+          )),
           TextFieldContainer(
             child: DropdownButton<String>(
               isExpanded: true,
@@ -98,15 +120,38 @@ class _BodyState extends State<Body> {
             ),
           ),
           RoundedInputField(
-              icon: Icons.alternate_email,
-              hintText: "Email (Optional)",
-              onChanged: (value) {}),
+            icon: Icons.alternate_email,
+            hintText: "Email (Optional)",
+            onChanged: (value) {},
+            textEditingController: emailController,
+          ),
           RoundedInputField(
-              icon: Icons.phone_android,
-              hintText: "Phone Number (Optional)",
-              onChanged: (value) {}),
-          RoundedPasswordField(onChanged: (value) {}),
-          RoundedButton(text: "SIGN UP", press: () {}),
+            icon: Icons.phone_android,
+            hintText: "Phone Number (Optional)",
+            onChanged: (value) {},
+            textEditingController: phoneController,
+          ),
+          RoundedPasswordField(
+            onChanged: (value) {},
+            controller: passwordController,
+          ),
+          RoundedButton(
+              text: "SIGN UP",
+              press: () async {
+                User user = await _authService.register(
+                    nameController.text.trim().toString(),
+                    usernameController.text.trim().toString(),
+                    passwordController.text.trim().toString(),
+                    dateController.text.toString(),
+                    emailController.text.trim().toString(),
+                    phoneController.text.trim().toString(),
+                    dropdownValue,
+                    majorController.text.trim().toString().toLowerCase());
+                if (user != null) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MainPage()));
+                } else {}
+              }),
           SizedBox(height: size.height * 0.02),
           AlreadyHaveAnAccountCheck(
             press: () {},
