@@ -53,7 +53,7 @@ class Body extends StatelessWidget {
               text: "LOGIN",
               press: () async {
                 User user = await _authService.login(
-                    usernameController.text.trim().toString().toLowerCase(),
+                    usernameController.text.trim().toString(),
                     passwordController.text.trim().toString());
                 if (user != null) {
                   Navigator.push(context,

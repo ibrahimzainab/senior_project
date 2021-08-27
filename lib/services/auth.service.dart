@@ -40,7 +40,7 @@ class AuthService {
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, String>{
-          'email': email,
+          'username': email,
           'password': password,
         }));
     if (response.statusCode == 201) {
@@ -50,6 +50,7 @@ class AuthService {
       list = User(user);
       return list;
     } else {
+      print("HEYYY $password");
       Fluttertoast.showToast(
           msg: json.decode(response.body)['message'],
           toastLength: Toast.LENGTH_SHORT,

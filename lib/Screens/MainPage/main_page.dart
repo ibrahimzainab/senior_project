@@ -22,7 +22,7 @@ class _MainPageState extends State<MainPage> {
   List<Widget> _bodyContent = [
     Home(),
     Garden(),
-    Catalog(),
+    LoginScreen(),
     Articles(),
     Notes(),
   ];
