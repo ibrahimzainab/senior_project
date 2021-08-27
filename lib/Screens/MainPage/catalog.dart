@@ -79,18 +79,8 @@ class _CatalogState extends State<Catalog> {
                   ),
                   itemBuilder: (context, index) => Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-                    child: GestureDetector(
-                      onTap: () {
-                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ViewPlant(
-                                  plant: demoPlants[index],
-                                )));
-                      },
                       child: PlantCatalogCard(
                           plant: demoGardenPlants[index],
-                        ),
                       ),
                     ),
                   ),

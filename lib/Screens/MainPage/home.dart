@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:senior_project/classes/user.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:weather/weather.dart';
 import 'package:senior_project/constants.dart';
 import 'components/weatherwidget.dart';
@@ -24,6 +25,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getWeather();
+    _showNotification();
   }
 }
 
@@ -224,4 +226,33 @@ Widget get suggestionWidget {
       ),
     ),
   );
+}
+
+FlutterLocalNotificationsPlugin localNotification;
+
+Future _showNotification() async {
+  var androidInitialize =
+      AndroidInitializationSettings('water_notification_icon');
+  var iOSInitialize = IOSInitializationSettings();
+  var initializationSettings =
+      InitializationSettings(android: androidInitialize, iOS: iOSInitialize);
+
+  localNotification = FlutterLocalNotificationsPlugin();
+
+  localNotification.initialize(initializationSettings);
+  var androidDetails = AndroidNotificationDetails(
+      "channelId", "Local Notification", "This is the description!",
+      importance: Importance.high);
+  var iOSDetails = IOSNotificationDetails();
+  var generalNotificationDetails =
+      NotificationDetails(android: androidDetails, iOS: iOSDetails);
+
+  await localNotification.show(0, 'Water plant',
+      'its time for you to water your plants', generalNotificationDetails);
+
+  localNotification.zonedSchedule(1, "Task", "Scheduled notification",
+      DateTime.now().add(Duration(seconds: 5)), generalNotificationDetails,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      androidAllowWhileIdle: true);
 }
