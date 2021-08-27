@@ -248,8 +248,12 @@ Future _showNotification() async {
   var generalNotificationDetails =
       NotificationDetails(android: androidDetails, iOS: iOSDetails);
 
-  await localNotification.show(0, 'Water plant',
-      'its time for you to water your plants', generalNotificationDetails);
+  await localNotification.show(
+      0,
+      'Water plant',
+      'its time for you to water your plants',
+      generalNotificationDetails
+  );
 
   tz.initializeTimeZones();
 
