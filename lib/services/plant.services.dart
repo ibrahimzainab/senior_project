@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:senior_project/classes/article.dart';
+import 'package:senior_project/classes/insect.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
@@ -108,6 +109,10 @@ class PlantService {
           fontSize: 16.0);
       return null;
     }
+  }
+
+  Future<List<Insect>> getRelatedInsects() {
+    
   }
 
 }
