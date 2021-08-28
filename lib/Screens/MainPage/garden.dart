@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCard.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/classes/user.dart';
@@ -7,8 +8,8 @@ import 'package:senior_project/services/auth.service.dart';
 import 'package:senior_project/services/plant.services.dart';
 
 PlantService _plantService = PlantService();
-
 List<SavedPlant> demoGardenPlants = [];
+User user = User.user;
 
 class Garden extends StatefulWidget {
   @override
@@ -18,11 +19,7 @@ class Garden extends StatefulWidget {
 class _GardenState extends State<Garden> {
   @override
   Widget build(BuildContext context) {
-    User user = User.user;
     print(user.id);
-    _plantService
-        .getAllSavedPlants(user.id)
-        .then((value) => demoGardenPlants = value);
     Size size = MediaQuery.of(context).size;
     return Container(
       color: kPrimaryColor,
@@ -64,42 +61,71 @@ class _GardenState extends State<Garden> {
                           topRight: Radius.circular(25),
                           topLeft: Radius.circular(25)),
                     )),
-                ListView.builder(
-                  itemCount: demoGardenPlants.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-                    child: Dismissible(
-                      key: Key(demoGardenPlants[index].id.toString()),
-                      direction: DismissDirection.endToStart,
-                      onDismissed: (direction) {
-                        setState(() {
-                          demoGardenPlants.removeAt(index);
-                        });
-                      },
-                      background: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: kPrimaryLightColor,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Row(
-                          children: [
-                            Spacer(),
-                            Icon(Icons.delete),
-                          ],
-                        ),
-                      ),
-                      child: PlantCard(
-                        plant: demoGardenPlants[index],
-                      ),
-                    ),
-                  ),
-                ),
+                ListWidget(),
               ]),
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+
+class ListWidget extends StatefulWidget {
+  @override
+  _ListWidgetState createState() => _ListWidgetState();
+}
+
+class _ListWidgetState extends State<ListWidget> {
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return FutureBuilder<List<SavedPlant>>(
+        future: _plantService
+            .getAllSavedPlants(user.id)
+            .then((value) => demoGardenPlants = value),
+        builder: (context, AsyncSnapshot<List<SavedPlant>> snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+              itemCount: demoGardenPlants.length,
+              itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+                child: Dismissible(
+                  key: Key(demoGardenPlants[index].id.toString()),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) {
+                    setState(() {
+                      demoGardenPlants.removeAt(index);
+                    });
+                  },
+                  background: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: kPrimaryLightColor,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Icon(Icons.delete),
+                      ],
+                    ),
+                  ),
+                  child: PlantCard(
+                    plant: demoGardenPlants[index],
+                  ),
+                ),
+              ),
+            );
+          } else {
+            return SizedBox(
+                width: size.width,
+                child: SpinKitThreeBounce(
+                  color: kPrimaryColor,
+                  size: 30.0,
+                ));
+          }
+        });
   }
 }
