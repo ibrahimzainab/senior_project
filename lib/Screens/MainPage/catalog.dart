@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCatalogCard.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
@@ -16,7 +17,6 @@ class Catalog extends StatefulWidget {
 class _CatalogState extends State<Catalog> {
   @override
   Widget build(BuildContext context) {
-    _plantService.getAllPlants().then((value) => demoGardenPlants = value);
     Size size = MediaQuery.of(context).size;
     return Container(
       color: kPrimaryColor,
@@ -61,7 +61,9 @@ class _CatalogState extends State<Catalog> {
                       icon: Icon(Icons.search, color: Colors.white),
                       hintText: 'Search',
                       hintStyle: TextStyle(color: Colors.white),
-                    ))),
+                    ),
+                ),
+            ),
             Expanded(
               child: Stack(children: <Widget>[
                 Container(
@@ -71,27 +73,55 @@ class _CatalogState extends State<Catalog> {
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(25),
                           topLeft: Radius.circular(25)),
-                    )),
-                GridView.builder(
-                  itemCount: demoGardenPlants.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 0,
-                    crossAxisSpacing: 0,
-                    childAspectRatio: 0.85,
-                  ),
-                  itemBuilder: (context, index) => Padding(
-                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-                    child: PlantCatalogCard(
-                      plant: demoGardenPlants[index],
                     ),
-                  ),
                 ),
+                ListWidget(),
               ]),
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+class ListWidget extends StatefulWidget {
+
+  @override
+  _ListWidgetState createState() => _ListWidgetState();
+}
+
+class _ListWidgetState extends State<ListWidget> {
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return FutureBuilder<List<Plant>>(
+        future: _plantService.getAllPlants().then((value) => demoGardenPlants = value),
+        builder: (context, AsyncSnapshot<List<Plant>> snapshot) {
+          if (snapshot.hasData) {
+            return GridView.builder(
+              itemCount: demoGardenPlants.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 0,
+                crossAxisSpacing: 0,
+                childAspectRatio: 0.85,
+              ),
+              itemBuilder: (context, index) => Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+                child: PlantCatalogCard(
+                  plant: demoGardenPlants[index],
+                ),
+              ),
+            );
+          } else {
+            return SizedBox(
+                width: size.width,
+                child: SpinKitDualRing(
+                  color: Colors.blue,
+                  size: 50.0,
+                ));
+          }
+        });
   }
 }
