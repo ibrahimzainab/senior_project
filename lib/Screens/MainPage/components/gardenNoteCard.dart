@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/Notes/editNote.dart';
 import 'package:senior_project/classes/note.dart';
-import 'package:senior_project/constants.dart';
 
 class GardenNoteCard extends StatefulWidget {
   const GardenNoteCard({

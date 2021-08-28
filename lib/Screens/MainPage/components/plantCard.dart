@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:senior_project/Screens/MainPage/Notes/components/noteCard.dart';
 import 'package:senior_project/classes/note.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';

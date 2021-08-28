@@ -50,11 +50,10 @@ class AuthService {
       list = User(user);
       return list;
     } else {
-      print("HEYYY $password");
       Fluttertoast.showToast(
           msg: json.decode(response.body)['message'],
           toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
+          gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: kPrimaryColor,
           textColor: kPrimaryLightColor,

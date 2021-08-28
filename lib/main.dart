@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:senior_project/Screens/Welcome/welcome_screen.dart';
 import 'package:senior_project/constants.dart';
 import 'package:senior_project/routes.dart';
 

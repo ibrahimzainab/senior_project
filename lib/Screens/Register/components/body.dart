@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/Login/components/already_have_an_account_check.dart';
 import 'package:senior_project/Screens/Login/components/textfieldcontainer.dart';
-import 'package:senior_project/Screens/MainPage/home.dart';
 import 'package:senior_project/Screens/MainPage/main_page.dart';
 import 'package:senior_project/Screens/Register/components/background.dart';
 import 'package:senior_project/Screens/Register/components/roundedinputfield.dart';

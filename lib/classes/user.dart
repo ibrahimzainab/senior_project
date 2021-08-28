@@ -23,7 +23,6 @@ class User {
     user.password = json['password'];
     user.region = json['region'];
     user.major = json['major'];
-    print("HEYYYY ${json['name']}");
     return user;
   }
 }

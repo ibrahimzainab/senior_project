@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:senior_project/classes/user.dart';
 import '../Register/components/body.dart';
 
 class RegisterScreen extends StatelessWidget {

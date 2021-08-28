@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCard.dart';
-import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
-import 'viewPlant.dart';
 
 class Garden extends StatefulWidget {
   @override
@@ -59,32 +57,32 @@ class _GardenState extends State<Garden> {
                   itemBuilder: (context, index) => Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
                     child: Dismissible(
-                        key: Key(demoGardenPlants[index].id.toString()),
-                        direction: DismissDirection.endToStart,
-                        onDismissed: (direction) {
-                          setState(() {
-                            demoGardenPlants.removeAt(index);
-                          });
-                        },
-                        background: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          decoration: BoxDecoration(
-                            color: kPrimaryLightColor,
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: Row(
-                            children: [
-                              Spacer(),
-                              Icon(Icons.delete),
-                            ],
-                          ),
+                      key: Key(demoGardenPlants[index].id.toString()),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction) {
+                        setState(() {
+                          demoGardenPlants.removeAt(index);
+                        });
+                      },
+                      background: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: kPrimaryLightColor,
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
-                        child: PlantCard(
-                          plant: demoGardenPlants[index],
+                        child: Row(
+                          children: [
+                            Spacer(),
+                            Icon(Icons.delete),
+                          ],
                         ),
+                      ),
+                      child: PlantCard(
+                        plant: demoGardenPlants[index],
                       ),
                     ),
                   ),
+                ),
               ]),
             ),
           ],

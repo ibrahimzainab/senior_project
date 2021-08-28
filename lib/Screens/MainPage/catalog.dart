@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:senior_project/Screens/MainPage/components/plantCard.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCatalogCard.dart';
-import 'package:senior_project/Screens/MainPage/viewPlant.dart';
-import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
 

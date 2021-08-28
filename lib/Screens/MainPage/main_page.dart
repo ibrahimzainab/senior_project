@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/catalog.dart';
 import 'package:senior_project/Screens/MainPage/home.dart';
 import 'package:senior_project/Screens/MainPage/garden.dart';
-import 'package:senior_project/Screens/Login/login_screen.dart';
-import 'package:senior_project/Screens/Register/register_screen.dart';
-import 'package:senior_project/Screens/Welcome/welcome_screen.dart';
 import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
 import 'Notes/notes.dart';
@@ -22,7 +19,7 @@ class _MainPageState extends State<MainPage> {
   List<Widget> _bodyContent = [
     Home(),
     Garden(),
-    LoginScreen(),
+    Catalog(),
     Articles(),
     Notes(),
   ];
