@@ -83,8 +83,7 @@ class _PlantCardState extends State<PlantCard> {
                           //this child should be an image
                           child: Hero(
                             tag: 'details-${widget.plant.id}',
-                            child: Image.asset(
-                                'assets/images/plant_grainy_illustration_alinashi.png'),
+                            child: Image.asset('${widget.plant.displayImage}'),
                           ),
                         ),
                       ),

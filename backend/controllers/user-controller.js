@@ -88,30 +88,51 @@ exports.login = async (req, res, next) => {
 }
 
 exports.getPlants = async (req, res, next) => {
+    
     var sql = "SELECT * FROM mydatabase.plant";
     db.query(sql, function(err, data, fields) {
         if(err) {
             return res.send('error: '+ err);
         }
-        else {
+        else {   
             return res.status(201).json({
                 plants: data,
-            })
-        }
     })
+} 
+})
 }
 
+
 exports.getSavedPlants = async (req, res, next) => {
-    var userId = req.body.id;
-    var sql = "SELECT * FROM mydatabase.savedplant P, mydatabase.user U WHERE P.iduser=U.iduser AND U.iduser = "+userId;
-    db.query(sql, function(err, data, fields) {
+    var userId = req.body.userid;
+    var sql = "SELECT SP.idsavedPlant, SP.idplant, SP.personalizedName, SP.dateOfPlanting, SP.watering, P.name, P.imagePath, ";
+    sql += "S.startDate, S.frequencyInterval, S.timeOfDay, S.endDate ";
+    sql += "FROM mydatabase.savedplant SP, mydatabase.user U, mydatabase.plant P, mydatabase.schedule S WHERE SP.iduser=U.iduser AND U.iduser = ? ";
+    sql  += "AND SP.idplant = P.idplant AND P.watering = S.idschedule";
+    db.query(sql,[userId], function(err, data, fields) {
         if(err) {
             return res.send('error: '+ err);
         }
         else {
             return res.status(201).json({
                 plants: data,
-            })
+            });
         }
-    })
+    }
+);
 }
+
+exports.getArticles = async(req, res, next) => {
+    var sql = "SELECT * FROM mydatabase.article";
+    db.query(sql, function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                articles: data,
+            });
+        }
+    });
+}
+

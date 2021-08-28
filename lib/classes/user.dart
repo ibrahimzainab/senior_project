@@ -25,4 +25,6 @@ class User {
     user.major = json['major'];
     return user;
   }
+
+
 }
