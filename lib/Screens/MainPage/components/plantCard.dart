@@ -35,10 +35,10 @@ class _PlantCardState extends State<PlantCard> {
       );
     else
       elevation = kBoxShadow;
-    if(demoNotes.length<2)
-      maxHeight = size.height*0.15;
+    if (demoNotes.length < 2)
+      maxHeight = size.height * 0.15;
     else
-      maxHeight = size.height*0.3;
+      maxHeight = size.height * 0.3;
     return Column(
       children: [
         GestureDetector(
@@ -47,12 +47,12 @@ class _PlantCardState extends State<PlantCard> {
             // this is a saved plant we need to display the catalogue plant details so we need to send to the viewPlant the plant in the catalogue which is of type plant not savedPlant
             // we are using demoPlants now just to check if it works
             // since demoPlants only has 3 items in the list only the first 3 cards work.
-            Navigator.push(
+            /*Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => ViewPlant(
                           plant: demoPlants[0],
-                        )));
+                        )));*/
           },
           child: Container(
             margin: EdgeInsets.symmetric(
@@ -88,7 +88,7 @@ class _PlantCardState extends State<PlantCard> {
                           //this child should be an image
                           child: Hero(
                             tag: 'details-${widget.plant.id}',
-                            child: Image.asset('${widget.plant.displayImage}'),
+                            child: Image.asset('${widget.plant.imagePath}'),
                           ),
                         ),
                       ),
@@ -112,7 +112,7 @@ class _PlantCardState extends State<PlantCard> {
                         ),
                         SizedBox(height: size.height * 0.005),
                         Text(
-                          '${widget.plant.plantName}',
+                          '${widget.plant.name}',
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 16,
@@ -127,7 +127,7 @@ class _PlantCardState extends State<PlantCard> {
                                 color: Colors.amber),
                             children: [
                               TextSpan(
-                                  text: '${widget.plant.date}',
+                                  text: '${widget.plant.date.split("T")[0]}',
                                   style: Theme.of(context).textTheme.bodyText1),
                             ],
                           ),
@@ -171,9 +171,9 @@ class _PlantCardState extends State<PlantCard> {
           SizedBox(
             height: size.height * 0.01,
           ),
-        if (extended && demoNotes.length==0)
+        if (extended && demoNotes.length == 0)
           SizedBox(
-            height: size.height*0.1,
+            height: size.height * 0.1,
             child: Text(
               'No notes attached to this plant.',
               style: TextStyle(
@@ -182,7 +182,7 @@ class _PlantCardState extends State<PlantCard> {
               ),
             ),
           ),
-        if (extended && demoNotes.length!=0)
+        if (extended && demoNotes.length != 0)
           LimitedBox(
             maxHeight: maxHeight,
             child: ListView.builder(

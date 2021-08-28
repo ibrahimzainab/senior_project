@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCard.dart';
 import 'package:senior_project/classes/savedPlant.dart';
+import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
+import 'package:senior_project/services/auth.service.dart';
+import 'package:senior_project/services/plant.services.dart';
+
+PlantService _plantService = PlantService();
+
+List<SavedPlant> demoGardenPlants = [];
 
 class Garden extends StatefulWidget {
   @override
@@ -11,6 +18,11 @@ class Garden extends StatefulWidget {
 class _GardenState extends State<Garden> {
   @override
   Widget build(BuildContext context) {
+    User user = User.user;
+    print(user.id);
+    _plantService
+        .getAllSavedPlants(user.id)
+        .then((value) => demoGardenPlants = value);
     Size size = MediaQuery.of(context).size;
     return Container(
       color: kPrimaryColor,

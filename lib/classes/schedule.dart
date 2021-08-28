@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class Schedule {
   DateTime startDate;
   int frequencyInterval;
-  DateTime timeOfDay;
-  DateTime endTime;
+  TimeOfDay timeOfDay;
+  DateTime endDate;
 
   Schedule({
     @required this.startDate,
     @required this.frequencyInterval,
     @required this.timeOfDay,
-    @required this.endTime,
+    @required this.endDate,
   });
 
   factory Schedule.fromJson(Map<String, dynamic> json) {
@@ -18,6 +18,6 @@ class Schedule {
         startDate: json['startDate'],
         frequencyInterval: json['frequencyInterval'],
         timeOfDay: json['timeOfDay'],
-        endTime: json['endTime']);
+        endDate: json['endTime']);
   }
 }

@@ -9,7 +9,7 @@ class SavedPlant {
   String imagePath;
   List<Note> plantNotes;
   Schedule water;
-  bool watering;
+  int watering;
 
   SavedPlant(
       {@required this.id,
@@ -32,10 +32,12 @@ class SavedPlant {
       imagePath: json['imagePath'],
       date: json['dateOfPlanting'],
       water: Schedule(
-        startDate: json['startDate'],
+        startDate: DateTime.parse(json['startDate']),
         frequencyInterval: json['frequencyInterval'],
-        timeOfDay: json['timeOfDay'],
-        endTime: json['endTime'],
+        timeOfDay: TimeOfDay(
+            hour: int.parse(json['timeOfDay'].split(":")[0]),
+            minute: int.parse(json['timeOfDay'].split(":")[1])),
+        endDate: DateTime.parse(json['endDate']),
       ),
     );
   }

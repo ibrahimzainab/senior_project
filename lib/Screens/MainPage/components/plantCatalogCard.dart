@@ -11,7 +11,7 @@ class PlantCatalogCard extends StatefulWidget {
     @required this.plant,
   }) : super(key: key);
 
-  final SavedPlant plant;
+  final Plant plant;
 
   @override
   _PlantCatalogCardState createState() => _PlantCatalogCardState();
@@ -27,8 +27,8 @@ class _PlantCatalogCardState extends State<PlantCatalogCard> {
             context,
             MaterialPageRoute(
                 builder: (context) => ViewPlant(
-                  plant: demoPlants[0],
-                )));
+                      plant: widget.plant,
+                    )));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,18 +60,17 @@ class _PlantCatalogCardState extends State<PlantCatalogCard> {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         //this child should be an image
-                          child: Hero(
-                            tag: 'details-${widget.plant.id}',
-                            child: Image.asset(
-                                'assets/images/plant_grainy_illustration_alinashi.png'),
-                          ),
-
+                        child: Hero(
+                          tag: 'details-${widget.plant.id}',
+                          child: Image.asset(
+                              'assets/images/plant_grainy_illustration_alinashi.png'),
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(height: size.height * 0.02),
                   Text(
-                    '${widget.plant.plantName}',
+                    '${widget.plant.name}',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,

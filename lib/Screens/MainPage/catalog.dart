@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCatalogCard.dart';
+import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
+import 'package:senior_project/services/plant.services.dart';
+
+PlantService _plantService = PlantService();
+List<Plant> demoGardenPlants = [];
 
 class Catalog extends StatefulWidget {
   @override
@@ -11,6 +16,7 @@ class Catalog extends StatefulWidget {
 class _CatalogState extends State<Catalog> {
   @override
   Widget build(BuildContext context) {
+    _plantService.getAllPlants().then((value) => demoGardenPlants = value);
     Size size = MediaQuery.of(context).size;
     return Container(
       color: kPrimaryColor,
@@ -76,11 +82,11 @@ class _CatalogState extends State<Catalog> {
                   ),
                   itemBuilder: (context, index) => Padding(
                     padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-                      child: PlantCatalogCard(
-                          plant: demoGardenPlants[index],
-                      ),
+                    child: PlantCatalogCard(
+                      plant: demoGardenPlants[index],
                     ),
                   ),
+                ),
               ]),
             ),
           ],
