@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/classes/plant.dart';
 
 class Note{
 
@@ -7,14 +8,16 @@ class Note{
   String image;
   bool reminder;
   String date;
+  Plant plant;
 
   Note({
-    @required this.id,
-    this.title,
+    this.id,
+    @required this.title,
     @required this.text,
     this.reminder = false,
     this.image,
     this.date,
+    this.plant
   });
 
   void addImage(String image){

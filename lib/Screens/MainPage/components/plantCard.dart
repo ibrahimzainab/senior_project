@@ -21,6 +21,7 @@ class PlantCard extends StatefulWidget {
 
 class _PlantCardState extends State<PlantCard> {
   bool extended = false;
+  double maxHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,10 @@ class _PlantCardState extends State<PlantCard> {
       );
     else
       elevation = kBoxShadow;
+    if(demoNotes.length<2)
+      maxHeight = size.height*0.15;
+    else
+      maxHeight = size.height*0.3;
     return Column(
       children: [
         GestureDetector(
@@ -167,14 +172,47 @@ class _PlantCardState extends State<PlantCard> {
           SizedBox(
             height: size.height * 0.01,
           ),
-        if (extended)
+        if (extended && demoNotes.length==0)
           SizedBox(
-            height: size.height * 0.3,
+            height: size.height*0.1,
+            child: Text(
+              'No notes attached to this plant.',
+              style: TextStyle(
+                fontSize: 10,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        if (extended && demoNotes.length!=0)
+          LimitedBox(
+            maxHeight: maxHeight,
             child: ListView.builder(
               itemCount: demoNotes.length,
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-                child: GardenNoteCard(note: demoNotes[index]),
+                child: Dismissible(
+                  key: Key(demoNotes[index].id.toString()),
+                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) {
+                    setState(() {
+                      demoNotes.removeAt(index);
+                    });
+                  },
+                  background: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      color: kPrimaryLightColor,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Row(
+                      children: [
+                        Spacer(),
+                        Icon(Icons.delete),
+                      ],
+                    ),
+                  ),
+                  child: GardenNoteCard(note: demoNotes[index]),
+                ),
               ),
             ),
           ),
