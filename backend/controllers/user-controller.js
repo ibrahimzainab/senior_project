@@ -136,3 +136,18 @@ exports.getArticles = async(req, res, next) => {
     });
 }
 
+exports.getPlant = async(req, res, next) => {
+    var idplant = req.body.plantid;
+    var sql = "SELECT * FROM mydatabase.plant WHERE idplant =?";
+    db.query(sql,[idplant] ,function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                plant : data[0],
+            });
+        }
+    });
+}
+

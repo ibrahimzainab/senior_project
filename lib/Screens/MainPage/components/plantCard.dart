@@ -3,9 +3,12 @@ import 'package:senior_project/classes/note.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
+import 'package:senior_project/services/plant.services.dart';
 
 import '../viewPlant.dart';
 import 'gardenNoteCard.dart';
+
+PlantService _plantService = PlantService();
 
 class PlantCard extends StatefulWidget {
   const PlantCard({
@@ -42,17 +45,20 @@ class _PlantCardState extends State<PlantCard> {
     return Column(
       children: [
         GestureDetector(
-          onTap: () {
+          onTap: () async {
+            Plant p = await _plantService.getPlant(widget.plant.idplant);
             // TODO: must search for plant in catalogue
             // this is a saved plant we need to display the catalogue plant details so we need to send to the viewPlant the plant in the catalogue which is of type plant not savedPlant
             // we are using demoPlants now just to check if it works
             // since demoPlants only has 3 items in the list only the first 3 cards work.
-            /*Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ViewPlant(
-                          plant: demoPlants[0],
-                        )));*/
+            if (p != null) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ViewPlant(
+                            plant: p,
+                          )));
+            }
           },
           child: Container(
             margin: EdgeInsets.symmetric(

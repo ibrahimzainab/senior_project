@@ -57,6 +57,30 @@ class PlantService {
       return null;
     }
   }
+
+  Future<Plant> getPlant(int idplant) async {
+    Plant plant;
+    var response = await http.post(Uri.parse(host + "/getPlant"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, int>{
+          'plantid': idplant,
+        }));
+    if (response.statusCode == 201) {
+      var result = json.decode(response.body)['plant'];
+      plant = Plant.fromJson(result);
+      return plant;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return null;
+    }
+  }
 }
-
-
