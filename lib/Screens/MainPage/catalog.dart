@@ -42,38 +42,38 @@ class _CatalogState extends State<Catalog> {
             ),
             SizedBox(height: size.height * 0.01),
             Container(
-                margin: EdgeInsets.fromLTRB(size.width * 0.1,
-                    size.height * 0.03, size.width * 0.1, size.height * 0.01),
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.05,
+              margin: EdgeInsets.fromLTRB(size.width * 0.1, size.height * 0.03,
+                  size.width * 0.1, size.height * 0.01),
+              padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.05,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: TextField(
+                style: TextStyle(
+                  color: Colors.white,
                 ),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(20),
+                decoration: InputDecoration(
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  icon: Icon(Icons.search, color: Colors.white),
+                  hintText: 'Search',
+                  hintStyle: TextStyle(color: Colors.white),
                 ),
-                child: TextField(
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    decoration: InputDecoration(
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      icon: Icon(Icons.search, color: Colors.white),
-                      hintText: 'Search',
-                      hintStyle: TextStyle(color: Colors.white),
-                    ),
-                ),
+              ),
             ),
             Expanded(
               child: Stack(children: <Widget>[
                 Container(
-                    margin: EdgeInsets.only(top: 70),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(25),
-                          topLeft: Radius.circular(25)),
-                    ),
+                  margin: EdgeInsets.only(top: 70),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(25),
+                        topLeft: Radius.circular(25)),
+                  ),
                 ),
                 ListWidget(),
               ]),
@@ -86,7 +86,6 @@ class _CatalogState extends State<Catalog> {
 }
 
 class ListWidget extends StatefulWidget {
-
   @override
   _ListWidgetState createState() => _ListWidgetState();
 }
@@ -96,7 +95,9 @@ class _ListWidgetState extends State<ListWidget> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder<List<Plant>>(
-        future: _plantService.getAllPlants().then((value) => demoGardenPlants = value),
+        future: _plantService
+            .getAllPlants()
+            .then((value) => demoGardenPlants = value),
         builder: (context, AsyncSnapshot<List<Plant>> snapshot) {
           if (snapshot.hasData) {
             return GridView.builder(
@@ -117,9 +118,9 @@ class _ListWidgetState extends State<ListWidget> {
           } else {
             return SizedBox(
                 width: size.width,
-                child: SpinKitDualRing(
-                  color: Colors.blue,
-                  size: 50.0,
+                child: SpinKitThreeBounce(
+                  color: kPrimaryColor,
+                  size: 30.0,
                 ));
           }
         });
