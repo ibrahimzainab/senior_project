@@ -21,7 +21,7 @@ class Disease {
     );
   }
 
-  static List<Disease> getInsects(List json) {
+  static List<Disease> getDisease(List json) {
     return json.map((item) => Disease.fromJson(item)).toList();
   }
 }
