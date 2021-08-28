@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/Notes/editNote.dart';
 import 'package:senior_project/classes/note.dart';
 import '../../../constants.dart';
+import 'addNote.dart';
 import 'components/noteCard.dart';
 
 class Notes extends StatefulWidget {
@@ -33,7 +34,8 @@ class _NotesState extends State<Notes> {
                 IconButton(
                     icon: Icon(Icons.add),
                     onPressed: () {
-                      //Navigator.push(context, '/addNote'),
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AddNote()));
                     }),
               ],
             ),

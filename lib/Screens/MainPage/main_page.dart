@@ -5,7 +5,7 @@ import 'package:senior_project/Screens/MainPage/garden.dart';
 import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
 import 'Notes/notes.dart';
-import 'articles.dart';
+import 'Articles/articles.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
@@ -43,15 +43,15 @@ class _MainPageState extends State<MainPage> {
                 label: 'Home',
                 backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(
-                icon: Icon(Icons.agriculture),
+                icon: Icon(Icons.nature),
                 label: 'Garden',
                 backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(
-                icon: Icon(Icons.wysiwyg),
+                icon: Icon(Icons.menu_book),
                 label: 'Articles',
                 backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(
-                icon: Icon(Icons.bug_report),
+                icon: Icon(Icons.article),
                 label: 'Insects',
                 backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(

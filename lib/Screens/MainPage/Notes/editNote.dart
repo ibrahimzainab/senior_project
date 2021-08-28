@@ -134,11 +134,15 @@ class _EditNoteState extends State<EditNote> {
         color: color,
       ),
       onPressed: (){
-        if(widget.note.reminder=false){
-          widget.note.reminder =true;
+        if(widget.note.reminder==false){
+          setState(() {
+            widget.note.reminder =true;
+          });
         }
         else
-          widget.note.reminder=false;
+          setState(() {
+            widget.note.reminder=false;
+          });
       },
     );
   }
