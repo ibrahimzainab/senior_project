@@ -50,7 +50,7 @@ class _GardenState extends State<Garden> {
             Divider(
               height: size.height * 0.05,
             ),
-            // TODO: Add Plants List
+            
             Expanded(
               child: Stack(children: <Widget>[
                 Container(
@@ -70,7 +70,6 @@ class _GardenState extends State<Garden> {
     );
   }
 }
-
 
 class ListWidget extends StatefulWidget {
   @override

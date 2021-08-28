@@ -38,10 +38,10 @@ class _ViewArticleState extends State<ViewArticle> {
               SizedBox(
                 height: size.height * 0.06,
               ),
-              if (widget.article.image != 'assets/images/article_img.png')
+              if (widget.article.imagePath != 'assets/images/article_img.png')
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 0, size.height * 0.05),
-                  child: Image.asset(widget.article.image),
+                  child: Image.asset(widget.article.imagePath),
                 ),
               Text(
                 '${widget.article.text}',

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:senior_project/classes/article.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
@@ -83,4 +84,30 @@ class PlantService {
       return null;
     }
   }
+
+  Future<List<Article>> getArticles() async {
+    List<Article> articles;
+    var response = await http.post(
+      Uri.parse(host + "/getArticles"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 201) {
+      var articlesJson = json.decode(response.body)['articles'];
+      articles = Article.getArticles(articlesJson);
+      return articles;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return null;
+    }
+  }
+
 }
