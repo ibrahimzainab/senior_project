@@ -103,12 +103,12 @@ class _PlantCardState extends State<PlantCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         SizedBox(
-                          width: size.width * 0.4,
+                          width: size.width * 0.45,
                           child: Text(
                             '${widget.plant.addedName}',
                             style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 20,
+                                fontSize: 17,
                                 fontWeight: FontWeight.bold,
                                 letterSpacing: 1.0),
                             maxLines: 1,
@@ -119,7 +119,7 @@ class _PlantCardState extends State<PlantCard> {
                           '${widget.plant.name}',
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 16,
+                              fontSize: 14,
                               letterSpacing: 1.0),
                           maxLines: 1,
                         ),
@@ -218,16 +218,20 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                         ),
                       ),
                     ),
-                    FloatingActionButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AddNote(
-                                    savedPlantId: widget.savedPlantid)));
-                      },
-                      child: Icon(Icons.add),
-                      backgroundColor: kPrimaryColor,
+                    Container(
+                      height: size.height*0.05,
+                      width: size.height*0.05,
+                      child: FloatingActionButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AddNote(
+                                      savedPlantId: widget.savedPlantid)));
+                        },
+                        child: Icon(Icons.add),
+                        backgroundColor: kPrimaryColor,
+                      ),
                     ),
                   ],
                 ),
