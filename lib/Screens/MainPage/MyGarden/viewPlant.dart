@@ -4,6 +4,7 @@ import 'package:senior_project/Screens/MainPage/MyGarden/garden.dart';
 import 'package:senior_project/Screens/MainPage/main_page.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/user.dart';
+import 'package:senior_project/constants.dart';
 import 'package:senior_project/services/plant.services.dart';
 
 import 'info.dart';
@@ -53,13 +54,13 @@ class _ViewPlantState extends State<ViewPlant> {
                     ),
                     actions: <Widget>[
                       TextButton(
-                        child: const Text('Cancel'),
+                        child: const Text('Cancel',style: TextStyle(color: kPrimaryColor)),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
                       ),
                       TextButton(
-                        child: const Text('Confirm'),
+                        child: const Text('Confirm',style: TextStyle(color: kPrimaryColor),),
                         onPressed: () async {
                           if (_controller.text != '') {
                             // TODO: add plant to garden
