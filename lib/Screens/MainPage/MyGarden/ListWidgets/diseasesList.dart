@@ -29,6 +29,17 @@ class _DiseasesListWidgetState extends State<DiseasesListWidget> {
             .then((value) => demoDiseases = value),
         builder: (context, AsyncSnapshot<List<Disease>> snapshot) {
           if (snapshot.hasData) {
+            if (demoDiseases.length == 0)
+              return Center(
+                child: Text(
+                  'No related insects.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                  ),
+                ),
+              );
+            else
             return GridView.builder(
               itemCount: demoDiseases.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

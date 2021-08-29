@@ -7,6 +7,7 @@ import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
 import 'MyGarden/garden.dart';
 import 'Articles/articles.dart';
+import 'Notes/notes.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);

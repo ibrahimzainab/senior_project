@@ -33,6 +33,17 @@ class _ArticlesListWidgetState extends State<ArticlesListWidget> {
         _plantService.getRelatedArticles(widget.plant.id).then((value) => demoArticles = value),
         builder: (context, AsyncSnapshot<List<Article>> snapshot) {
           if (snapshot.hasData) {
+            if (demoArticles.length == 0)
+              return Center(
+                child: Text(
+                  'No related insects.',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                  ),
+                ),
+              );
+            else
             return ListView.builder(
               itemCount: demoArticles.length,
               itemBuilder: (context, index) =>

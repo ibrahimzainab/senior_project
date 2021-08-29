@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getWeather();
-    _showNotification();
+    //_showNotification();
   }
 }
 
@@ -228,7 +228,7 @@ Widget get suggestionWidget {
     ),
   );
 }
-
+/*
 FlutterLocalNotificationsPlugin localNotification;
 
 Future _showNotification() async {
@@ -264,3 +264,5 @@ Future _showNotification() async {
           UILocalNotificationDateInterpretation.absoluteTime,
       androidAllowWhileIdle: true);
 }
+
+ */
