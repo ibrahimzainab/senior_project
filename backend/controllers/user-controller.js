@@ -323,3 +323,22 @@ exports.getAllNotes = async(req, res, next) => {
     });
 
 }
+
+exports.editNote = async(req, res, next) => {
+    var noteid = req.body.noteid;
+    var description = req.body.description;
+    var title = req.body.title;
+
+    var sql = "UPDATE mydatabase.note SET title=?, description =? WHERE idnote=?";
+    db.query(sql, [title, description, noteid],function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                message: "Success!",
+            });
+        }
+    });
+
+}

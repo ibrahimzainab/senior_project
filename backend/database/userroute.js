@@ -21,5 +21,6 @@ router.post('/addNote', actions.addNote)
 router.post('/addSchedule', actions.addSchedule)
 router.post('/getNotes', actions.getNotes)
 router.post('/getAllNotes', actions.getAllNotes)
+router.post('/editNote', actions.editNote)
 
 module.exports = router;

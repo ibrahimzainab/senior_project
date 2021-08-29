@@ -44,7 +44,7 @@ class _MainPageState extends State<MainPage> {
                 label: 'Home',
                 backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(
-                icon: Icon(Icons.nature),
+                icon: Icon(Icons.grass),
                 label: 'Garden',
                 backgroundColor: kPrimaryColor),
             BottomNavigationBarItem(

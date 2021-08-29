@@ -324,4 +324,28 @@ class PlantService {
       return null;
     }
   }
+
+  Future<bool> editNote(int noteid, String title, String text) async {
+    var response = await http
+        .post(Uri.parse(host + "/editNote"), headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    }, body: {
+      'noteid': noteid,
+      'title': title,
+      'description': text
+    });
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return false;
+    }
+  }
 }
