@@ -8,6 +8,7 @@ import 'package:senior_project/classes/insect.dart';
 import 'package:senior_project/classes/note.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
+import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
 
 class PlantService {
@@ -302,12 +303,11 @@ class PlantService {
 
   Future<List<Note>> getAllNotes() async {
     List<Note> list;
-    var response = await http.post(
-      Uri.parse(host + "/getNotes"),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    );
+    var response = await http.post(Uri.parse(host + "/getAllNotes"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{'userid': User.user.id}));
     if (response.statusCode == 201) {
       var noteJson = json.decode(response.body)['notes'];
       list = Note.getNotes(noteJson);
@@ -326,14 +326,15 @@ class PlantService {
   }
 
   Future<bool> editNote(int noteid, String title, String text) async {
-    var response = await http
-        .post(Uri.parse(host + "/editNote"), headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    }, body: {
-      'noteid': noteid,
-      'title': title,
-      'description': text
-    });
+    var response = await http.post(Uri.parse(host + "/editNote"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'noteid': noteid,
+          'title': title,
+          'description': text
+        }));
     if (response.statusCode == 201) {
       return true;
     } else {

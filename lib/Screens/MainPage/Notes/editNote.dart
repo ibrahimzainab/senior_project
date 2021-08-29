@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/classes/note.dart';
+import 'package:senior_project/services/plant.services.dart';
+
+PlantService _plantService = PlantService();
 
 class EditNote extends StatefulWidget {
   const EditNote({Key key, @required this.note}) : super(key: key);
@@ -58,12 +61,14 @@ class _EditNoteState extends State<EditNote> {
                   content: Text("Title and text can't be empty!"),
                 ));
               } else {
-                if (_titleController.text != widget.note.title) {
+                if (_titleController.text != widget.note.title ||
+                    _textController.text != widget.note.text) {
                   widget.note.editTitle(_titleController.text);
-                }
-                if (_textController.text != widget.note.text) {
                   widget.note.editText(_textController.text);
+                  _plantService.editNote(widget.note.id, _titleController.text,
+                      _textController.text);
                 }
+
                 Navigator.pop(context);
               }
             },

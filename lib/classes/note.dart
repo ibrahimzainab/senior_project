@@ -39,7 +39,7 @@ class Note {
         title: json['title'],
         image: json['imagePath'],
         text: json['description'],
-        date: json['date'],
+        date: json['date'].split("T")[0],
         reminder: json['reminder'],
         scheduleid: json['scheduleid'],
         savedPlantid: json['savedplantid']);

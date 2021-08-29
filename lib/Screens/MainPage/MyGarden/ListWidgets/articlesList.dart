@@ -36,7 +36,7 @@ class _ArticlesListWidgetState extends State<ArticlesListWidget> {
             if (demoArticles.length == 0)
               return Center(
                 child: Text(
-                  'No related insects.',
+                  'No related articles.',
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 15,

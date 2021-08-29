@@ -62,7 +62,7 @@ class _GardenNoteCardState extends State<GardenNoteCard> {
                               fontWeight: FontWeight.w600, color: Colors.amber),
                           children: [
                             TextSpan(
-                                text: '${widget.note.date}',
+                                text: '${widget.note.date.split("T")[0]}',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ],
                         ),

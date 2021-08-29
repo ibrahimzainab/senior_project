@@ -310,8 +310,9 @@ exports.getNotes = async(req, res, next) => {
 }
 
 exports.getAllNotes = async(req, res, next) => {
-    var sql = "SELECT * FROM mydatabase.note";
-    db.query(sql, [savedplantid],function(err, data, fields) {
+    var userid = req.body.userid
+    var sql = "SELECT * FROM mydatabase.note N, mydatabase.savedplant S WHERE S.idsavedplant = N.savedplantid AND S.iduser = ? ";
+    db.query(sql, [userid],function(err, data, fields) {
         if(err) {
             return res.send('error: '+ err);
         }
