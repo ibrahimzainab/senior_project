@@ -32,7 +32,7 @@ class _DiseasesListWidgetState extends State<DiseasesListWidget> {
             if (demoDiseases.length == 0)
               return Center(
                 child: Text(
-                  'No related insects.',
+                  'No related diseases.',
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 15,
