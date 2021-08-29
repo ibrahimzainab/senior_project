@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:senior_project/Screens/MainPage/Notes/editNote.dart';
 import 'package:senior_project/classes/note.dart';
 import 'package:senior_project/services/plant.services.dart';
@@ -7,6 +8,7 @@ import 'addNote.dart';
 import 'components/noteCard.dart';
 
 PlantService _plantService = PlantService();
+List<Note> demoNotes = [];
 
 class Notes extends StatefulWidget {
   @override
@@ -33,13 +35,13 @@ class _NotesState extends State<Notes> {
                     fontSize: 30.0,
                   ),
                 ),
-                Spacer(),
-                IconButton(
-                    icon: Icon(Icons.add),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => AddNote()));
-                    }),
+                // Spacer(),
+                // IconButton(
+                //     icon: Icon(Icons.add),
+                //     onPressed: () {
+                //       Navigator.push(context,
+                //           MaterialPageRoute(builder: (context) => AddNote()));
+                //     }),
               ],
             ),
           ),
@@ -48,7 +50,41 @@ class _NotesState extends State<Notes> {
           ),
           Container(
             height: size.height * 0.8,
-            child: ListView.builder(
+            child: NotesListWidget(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NotesListWidget extends StatefulWidget {
+
+  @override
+  _NotesListWidgetState createState() => _NotesListWidgetState();
+}
+
+class _NotesListWidgetState extends State<NotesListWidget> {
+  int change =0;
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return FutureBuilder<List<Note>>(
+        future:
+        _plantService.getArticles().then((value) => demoNotes = value),
+        builder: (context, AsyncSnapshot<List<Note>> snapshot) {
+          if (snapshot.hasData) {
+            if(demoNotes.isEmpty)
+              return Center(
+                child: Text(
+                  'No added notes.',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey,
+                  ),
+                ),
+              );
+            return ListView.builder(
               itemCount: demoNotes.length,
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 30.0),
@@ -58,13 +94,11 @@ class _NotesState extends State<Notes> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => EditNote(
-                                  note: demoNotes[index],
-                                )));
-                    /* TODO:must update the list after pop
+                              note: demoNotes[index],
+                            )));
                     setState(() {
-
+                      change++;
                     });
-                     */
                   },
                   child: Dismissible(
                     key: Key(demoNotes[index].id.toString()),
@@ -93,10 +127,15 @@ class _NotesState extends State<Notes> {
                   ),
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
+            );
+          } else {
+            return SizedBox(
+                width: size.width,
+                child: SpinKitThreeBounce(
+                  color: kPrimaryColor,
+                  size: 30.0,
+                ));
+          }
+        });
   }
 }
