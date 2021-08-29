@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:senior_project/Screens/MainPage/components/plantCatalogCard.dart';
 import 'package:senior_project/classes/plant.dart';
-import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
 import 'package:senior_project/services/plant.services.dart';
 

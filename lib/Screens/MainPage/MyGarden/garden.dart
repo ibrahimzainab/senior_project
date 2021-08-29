@@ -4,7 +4,6 @@ import 'package:senior_project/Screens/MainPage/components/plantCard.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
-import 'package:senior_project/services/auth.service.dart';
 import 'package:senior_project/services/plant.services.dart';
 
 PlantService _plantService = PlantService();

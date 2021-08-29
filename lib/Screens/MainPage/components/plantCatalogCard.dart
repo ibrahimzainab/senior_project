@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/MyGarden/viewPlant.dart';
 import 'package:senior_project/classes/plant.dart';
-import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
 
 class PlantCatalogCard extends StatefulWidget {
