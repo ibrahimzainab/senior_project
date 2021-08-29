@@ -71,7 +71,7 @@ class _NotesListWidgetState extends State<NotesListWidget> {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder<List<Note>>(
         future:
-        _plantService.getArticles().then((value) => demoNotes = value),
+        _plantService.getAllNotes().then((value) => demoNotes = value),
         builder: (context, AsyncSnapshot<List<Note>> snapshot) {
           if (snapshot.hasData) {
             if(demoNotes.isEmpty)

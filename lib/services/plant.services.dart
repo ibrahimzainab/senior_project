@@ -299,4 +299,29 @@ class PlantService {
       return null;
     }
   }
+
+  Future<List<Note>> getAllNotes() async {
+    List<Note> list;
+    var response = await http.post(
+      Uri.parse(host + "/getNotes"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    if (response.statusCode == 201) {
+      var noteJson = json.decode(response.body)['notes'];
+      list = Note.getNotes(noteJson);
+      return list;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return null;
+    }
+  }
 }

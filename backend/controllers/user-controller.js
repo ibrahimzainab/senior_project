@@ -308,3 +308,18 @@ exports.getNotes = async(req, res, next) => {
     });
 
 }
+
+exports.getAllNotes = async(req, res, next) => {
+    var sql = "SELECT * FROM mydatabase.note";
+    db.query(sql, [savedplantid],function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                notes: data,
+            });
+        }
+    });
+
+}

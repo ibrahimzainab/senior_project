@@ -20,5 +20,6 @@ router.post('/addToGarden', actions.addToGarden)
 router.post('/addNote', actions.addNote)
 router.post('/addSchedule', actions.addSchedule)
 router.post('/getNotes', actions.getNotes)
+router.post('/getAllNotes', actions.getAllNotes)
 
 module.exports = router;
