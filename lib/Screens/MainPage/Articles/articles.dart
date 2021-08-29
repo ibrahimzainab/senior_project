@@ -150,15 +150,28 @@ class _ListWidgetState extends State<ListWidget> {
             }
           });
     }
-    else return ListView.builder(
-      itemCount: filteredDemoArticles.length,
-      itemBuilder: (context, index) =>
-          Padding(
-            padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-            child: ArticleCard(
-              article: filteredDemoArticles[index],
+    else{
+      if(filteredDemoArticles.isEmpty)
+        return Center(
+            child: Text(
+              'No results found',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 15,
+              ),
             ),
-          ),
-    );
+        );
+        else
+          return ListView.builder(
+          itemCount: filteredDemoArticles.length,
+          itemBuilder: (context, index) =>
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+                child: ArticleCard(
+                  article: filteredDemoArticles[index],
+                ),
+              ),
+        );
+    }
   }
 }

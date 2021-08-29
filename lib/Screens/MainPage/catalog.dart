@@ -6,7 +6,8 @@ import 'package:senior_project/constants.dart';
 import 'package:senior_project/services/plant.services.dart';
 
 PlantService _plantService = PlantService();
-List<Plant> demoGardenPlants = [];
+List<Plant> demoPlants = [];
+List<Plant> filteredDemoPlants = [];
 
 class Catalog extends StatefulWidget {
   @override
@@ -14,6 +15,24 @@ class Catalog extends StatefulWidget {
 }
 
 class _CatalogState extends State<Catalog> {
+
+  void _runFilter(String enteredKeyword) {
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      setState(() {
+        filteredDemoPlants = demoPlants;
+      });
+    } else {
+      setState(() {
+        filteredDemoPlants = demoPlants
+            .where((plant) =>
+            plant.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
+            .toList();
+      });
+      // we use the toLowerCase() method to make it case-insensitive
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -51,6 +70,7 @@ class _CatalogState extends State<Catalog> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: TextField(
+                onChanged: (value){_runFilter(value);},
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -93,35 +113,67 @@ class _ListWidgetState extends State<ListWidget> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return FutureBuilder<List<Plant>>(
-        future: _plantService
-            .getAllPlants()
-            .then((value) => demoGardenPlants = value),
-        builder: (context, AsyncSnapshot<List<Plant>> snapshot) {
-          if (snapshot.hasData) {
-            return GridView.builder(
-              itemCount: demoGardenPlants.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 0,
-                crossAxisSpacing: 0,
-                childAspectRatio: 0.85,
-              ),
-              itemBuilder: (context, index) => Padding(
+    if(demoPlants.isEmpty) {
+      return FutureBuilder<List<Plant>>(
+          future: _plantService
+              .getAllPlants()
+              .then((value) => demoPlants = value),
+          builder: (context, AsyncSnapshot<List<Plant>> snapshot) {
+            if (snapshot.hasData) {
+              return GridView.builder(
+                itemCount: demoPlants.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 0,
+                  crossAxisSpacing: 0,
+                  childAspectRatio: 0.85,
+                ),
+                itemBuilder: (context, index) =>
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+                      child: PlantCatalogCard(
+                        plant: demoPlants[index],
+                      ),
+                    ),
+              );
+            } else {
+              return SizedBox(
+                  width: size.width,
+                  child: SpinKitThreeBounce(
+                    color: kPrimaryColor,
+                    size: 30.0,
+                  ));
+            }
+          });
+    }
+    else {
+      if(filteredDemoPlants.isEmpty)
+        return Center(
+          child: Text(
+            'No results found',
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 15,
+            ),
+          ),
+        );
+      else
+        return GridView.builder(
+          itemCount: filteredDemoPlants.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 0,
+            crossAxisSpacing: 0,
+            childAspectRatio: 0.85,
+          ),
+          itemBuilder: (context, index) =>
+              Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
                 child: PlantCatalogCard(
-                  plant: demoGardenPlants[index],
+                  plant: filteredDemoPlants[index],
                 ),
               ),
-            );
-          } else {
-            return SizedBox(
-                width: size.width,
-                child: SpinKitThreeBounce(
-                  color: kPrimaryColor,
-                  size: 30.0,
-                ));
-          }
-        });
+        );
+    }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/MyGarden/viewPlant.dart';
+import 'package:senior_project/Screens/MainPage/Notes/addNote.dart';
 import 'package:senior_project/classes/note.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
@@ -184,34 +185,59 @@ class _PlantCardState extends State<PlantCard> {
         if (extended && demoNotes.length != 0)
           LimitedBox(
             maxHeight: maxHeight,
-            child: ListView.builder(
-              itemCount: demoNotes.length,
-              itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-                child: Dismissible(
-                  key: Key(demoNotes[index].id.toString()),
-                  direction: DismissDirection.endToStart,
-                  onDismissed: (direction) {
-                    setState(() {
-                      demoNotes.removeAt(index);
-                    });
-                  },
-                  background: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: kPrimaryLightColor,
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Row(
-                      children: [
-                        Spacer(),
-                        Icon(Icons.delete),
-                      ],
+            child: Stack(
+              children: [
+                ListView.builder(
+                  itemCount: demoNotes.length,
+                  itemBuilder: (context, index) => Padding(
+                    padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+                    child: Dismissible(
+                      key: Key(demoNotes[index].id.toString()),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction) {
+                        setState(() {
+                          demoNotes.removeAt(index);
+                        });
+                      },
+                      background: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: kPrimaryLightColor,
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Row(
+                          children: [
+                            Spacer(),
+                            Icon(Icons.delete),
+                          ],
+                        ),
+                      ),
+                      child: GardenNoteCard(note: demoNotes[index]),
                     ),
                   ),
-                  child: GardenNoteCard(note: demoNotes[index]),
                 ),
-              ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(0, 0, size.width*0.07, size.width*0.05),
+                          child: FloatingActionButton(
+                            onPressed: (){
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => AddNote()));
+                            },
+                            child: Icon(Icons.add),
+                            backgroundColor: kPrimaryColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
       ],

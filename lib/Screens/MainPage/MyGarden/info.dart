@@ -25,7 +25,7 @@ class _InfoState extends State<Info> {
       body: Container(
         color: kPrimaryColor,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(0, 0, 0, 0.0),
+          padding: EdgeInsets.fromLTRB(0, 1.0, 0, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

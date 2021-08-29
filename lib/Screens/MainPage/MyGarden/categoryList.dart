@@ -61,24 +61,25 @@ class _CategoryListState extends State<CategoryList> {
                   ),
             ),
           ),
-          Expanded(
+          SizedBox(
+            height: size.height*0.7,
             child: Stack(children: <Widget>[
-              Container(
-                //margin: EdgeInsets.only(top: 70),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(25),
-                      topLeft: Radius.circular(25)),
+                Container(
+                  //margin: EdgeInsets.only(top: 70),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(25),
+                        topLeft: Radius.circular(25)),
+                  ),
                 ),
-              ),
-              if(selectedIndex==0)
-                InsectsListWidget(plant: widget.plant),
-              if(selectedIndex==1)
-                DiseasesListWidget(plant: widget.plant),
-              if(selectedIndex==2)
-                ArticlesListWidget(plant: widget.plant),
-            ]),
+                if(selectedIndex==0)
+                  InsectsListWidget(plant: widget.plant),
+                if(selectedIndex==1)
+                  DiseasesListWidget(plant: widget.plant),
+                if(selectedIndex==2)
+                  ArticlesListWidget(plant: widget.plant),
+              ]),
           ),
         ],
       );
