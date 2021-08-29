@@ -13,5 +13,9 @@ router.post('/getPlants', actions.getPlants)
 router.post('/getSavedPlants', actions.getSavedPlants)
 router.post('/getPlant', actions.getPlant)
 router.post('/getArticles', actions.getArticles)
+router.post('/getRelatedArticles', actions.getRelatedArticles)
+router.post('/getRelatedInsects', actions.getRelatedInsects)
+router.post('/getRelatedDiseases', actions.getRelatedDiseases)
+router.post('/addToGarden', actions.addToGarden)
 
 module.exports = router;

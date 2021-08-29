@@ -151,3 +151,75 @@ exports.getPlant = async(req, res, next) => {
     });
 }
 
+exports.getRelatedArticles = async(req, res, next) => {
+    var idplant = req.body.idplant;
+    var sql = "SELECT * FROM mydatabase.article A, mydatabase.relatedarticle R WHERE A.idarticle = R.articleID AND R.plantID =?";
+    db.query(sql, [idplant],function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                articles: data,
+            });
+        }
+    });
+}
+
+exports.getRelatedInsects = async(req, res, next) => {
+    var idplant = req.body.idplant;
+    var sql = "SELECT * FROM mydatabase.insect A, mydatabase.relatedinsect R WHERE A.idinsect = R.id_insect AND R.id_plant =?";
+    db.query(sql, [idplant],function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                insects: data,
+            });
+        }
+    });
+}
+
+exports.getRelatedDiseases = async(req, res, next) => {
+    var idplant = req.body.idplant;
+    var sql = "SELECT * FROM mydatabase.disease A, mydatabase.relateddisease R WHERE A.iddisease = R.diseaseKey AND R.plantKey =?";
+    db.query(sql, [idplant],function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                diseases: data,
+            });
+        }
+    });
+}
+
+exports.addToGarden = async(req, res, next) => {
+    var plantid =req.body.plantid;
+    var addedName = req.body.addedName;
+    var userid = req.body.userid;
+    var date =Date.prototype.getFullYear+"-"+(Date.prototype.getMonth+1)+"-"+Date.prototype.getDate();
+    var plant = {
+        idplant: plantid,
+        iduser: userid,
+        personalizedName: addedName,
+        dateOfPlanting: date,
+        }
+    var sql = "INSERT INTO mydatabase.savedplant SET ?";
+    db.query(sql, plant, function (err, row) {
+        if(err) {
+            return res.status(500).send(
+            {
+                error: err
+            });
+        }
+        return res.status(201).json(
+        {
+           message: 'New Plant, New Journey!',
+           result: user,
+        });
+    });
+}
+

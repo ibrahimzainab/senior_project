@@ -29,7 +29,15 @@ class AuthService {
       print(list);
       return list;
     } else {
-      throw Exception('Failed to create user');
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return null;
     }
   }
 
