@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:senior_project/Screens/MainPage/MyGarden/viewPlant.dart';
-import 'package:senior_project/classes/plant.dart';
-import 'package:senior_project/classes/savedPlant.dart';
-import 'package:senior_project/constants.dart';
+import 'package:senior_project/classes/disease.dart';
 
-class PlantCatalogCard extends StatefulWidget {
-  const PlantCatalogCard({
+import '../../../constants.dart';
+
+class DiseaseCard extends StatefulWidget {
+  const DiseaseCard({
     Key key,
-    @required this.plant,
+    @required this.disease,
   }) : super(key: key);
 
-  final Plant plant;
+  final Disease disease;
 
   @override
-  _PlantCatalogCardState createState() => _PlantCatalogCardState();
+  _DiseaseCardState createState() => _DiseaseCardState();
 }
 
-class _PlantCatalogCardState extends State<PlantCatalogCard> {
+class _DiseaseCardState extends State<DiseaseCard> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ViewPlant(
-                      plant: widget.plant,
-                    )));
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => ViewInsect(
+        //           insect: widget.insect,
+        //         )));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +59,7 @@ class _PlantCatalogCardState extends State<PlantCatalogCard> {
                         ),
                         //this child should be an image
                         child: Hero(
-                          tag: 'details-${widget.plant.id}',
+                          tag: 'details-${widget.disease.id}',
                           child: Image.asset(
                               'assets/images/plant_grainy_illustration_alinashi.png'),
                         ),
@@ -69,7 +68,7 @@ class _PlantCatalogCardState extends State<PlantCatalogCard> {
                   ),
                   SizedBox(height: size.height * 0.02),
                   Text(
-                    '${widget.plant.name}',
+                    '${widget.disease.name}',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,

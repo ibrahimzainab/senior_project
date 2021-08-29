@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/Screens/MainPage/MyGarden/viewPlant.dart';
 import 'package:senior_project/classes/note.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
 import 'package:senior_project/services/plant.services.dart';
-
-import '../viewPlant.dart';
 import 'gardenNoteCard.dart';
 
 PlantService _plantService = PlantService();

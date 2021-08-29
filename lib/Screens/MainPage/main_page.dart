@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/Login/login_screen.dart';
 import 'package:senior_project/Screens/MainPage/catalog.dart';
 import 'package:senior_project/Screens/MainPage/home.dart';
-import 'package:senior_project/Screens/MainPage/garden.dart';
 import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/constants.dart';
+import 'MyGarden/garden.dart';
 import 'Notes/notes.dart';
 import 'Articles/articles.dart';
+import 'MyGarden/info.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
