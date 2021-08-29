@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/MyGarden/viewPlant.dart';
+import 'package:senior_project/classes/insect.dart';
 import 'package:senior_project/classes/plant.dart';
 import 'package:senior_project/classes/savedPlant.dart';
 import 'package:senior_project/constants.dart';
 
-class PlantCatalogCard extends StatefulWidget {
-  const PlantCatalogCard({
+class InsectCard extends StatefulWidget {
+  const InsectCard({
     Key key,
-    @required this.plant,
+    @required this.insect,
   }) : super(key: key);
 
-  final Plant plant;
+  final Insect insect;
 
   @override
-  _PlantCatalogCardState createState() => _PlantCatalogCardState();
+  _InsectCardState createState() => _InsectCardState();
 }
 
-class _PlantCatalogCardState extends State<PlantCatalogCard> {
+class _InsectCardState extends State<InsectCard> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ViewPlant(
-                      plant: widget.plant,
-                    )));
+        // Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => ViewInsect(
+        //           insect: widget.insect,
+        //         )));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +61,7 @@ class _PlantCatalogCardState extends State<PlantCatalogCard> {
                         ),
                         //this child should be an image
                         child: Hero(
-                          tag: 'details-${widget.plant.id}',
+                          tag: 'details-${widget.insect.id}',
                           child: Image.asset(
                               'assets/images/plant_grainy_illustration_alinashi.png'),
                         ),
@@ -69,7 +70,7 @@ class _PlantCatalogCardState extends State<PlantCatalogCard> {
                   ),
                   SizedBox(height: size.height * 0.02),
                   Text(
-                    '${widget.plant.name}',
+                    '${widget.insect.name}',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,

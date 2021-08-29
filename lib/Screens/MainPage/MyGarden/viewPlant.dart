@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:senior_project/classes/plant.dart';
 
+import 'info.dart';
+
 class ViewPlant extends StatefulWidget {
   const ViewPlant({Key key, @required this.plant}) : super(key: key);
 
@@ -12,6 +14,9 @@ class ViewPlant extends StatefulWidget {
 }
 
 class _ViewPlantState extends State<ViewPlant> {
+
+  var _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -20,16 +25,73 @@ class _ViewPlantState extends State<ViewPlant> {
         title: Text('Details'),
         actions: [
           IconButton(
+            icon: Icon(Icons.add),
+            onPressed: (){
+              showDialog<void>(
+              context: context,
+              barrierDismissible: false, // user must tap button!
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('Add name'),
+                  content: ListBody(
+                      children: <Widget>[
+                        Text('Add  a name to your new plant.'),
+                        TextField(
+                          controller: _controller,
+                          decoration: InputDecoration(
+                            hintText: 'Name',
+                          ),
+                        ),
+                      ],
+                    ),
+                  actions: <Widget>[
+                    TextButton(
+                      child: const Text('Cancel'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    TextButton(
+                      child: const Text('Confirm'),
+                      onPressed: () {
+                        if(_controller.text!='') {
+                          // TODO: add plant to garden
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    "Plant added to my garden!"
+                                ),
+                              )
+                          );
+                          Navigator.of(context).pop();
+                        }
+                        else{
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    "Name can't be empty!"
+                                ),
+                              )
+                          );
+                        }
+
+                      },
+                    ),
+                  ],
+                );
+              },
+            );},
+          ),
+          IconButton(
               icon: Icon(Icons.notifications),
               onPressed: (){},
           ),
           IconButton(
-            icon: Icon(Icons.bug_report),
-            onPressed: (){},
-          ),
-          IconButton(
-            icon: Icon(Icons.article),
-            onPressed: (){},
+            icon: Icon(Icons.info),
+            onPressed: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Info()));
+            },
           ),
         ],
       ),

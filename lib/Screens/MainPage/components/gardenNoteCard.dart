@@ -23,7 +23,6 @@ class _GardenNoteCardState extends State<GardenNoteCard> {
       child: Container(
         margin: EdgeInsets.only(right: size.width * 0.02),
         decoration: BoxDecoration(
-          // TODO: add elevation when extended
           color: Colors.grey,
           borderRadius: BorderRadius.circular(22),
         ),
@@ -32,10 +31,6 @@ class _GardenNoteCardState extends State<GardenNoteCard> {
           child: Center(
             child: GestureDetector(
               onTap: (){
-                // TODO: must search for plant in catalogue
-                // this is a saved plant we need to display the catalogue plant details so we need to send to the viewPlant the plant in the catalogue which is of type plant not savedPlant
-                // we are using demoPlants now just to check if it works
-                // since demoPlants only has 3 items in the list only the first 3 cards work.
                 Navigator.push(
                     context,
                     MaterialPageRoute(
