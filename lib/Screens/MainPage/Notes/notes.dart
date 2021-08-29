@@ -43,7 +43,6 @@ class _NotesState extends State<Notes> {
           Divider(
             height: size.height * 0.03,
           ),
-          // TODO: Add Plants List
           Container(
             height: size.height * 0.8,
             child: ListView.builder(

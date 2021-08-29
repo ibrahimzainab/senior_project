@@ -46,10 +46,6 @@ class _PlantCardState extends State<PlantCard> {
         GestureDetector(
           onTap: () async {
             Plant p = await _plantService.getPlant(widget.plant.idplant);
-            // TODO: must search for plant in catalogue
-            // this is a saved plant we need to display the catalogue plant details so we need to send to the viewPlant the plant in the catalogue which is of type plant not savedPlant
-            // we are using demoPlants now just to check if it works
-            // since demoPlants only has 3 items in the list only the first 3 cards work.
             if (p != null) {
               Navigator.push(
                   context,
@@ -144,7 +140,6 @@ class _PlantCardState extends State<PlantCard> {
                       IconButton(
                         icon: Icon(Icons.arrow_drop_down),
                         onPressed: () {
-                          // TODO: Extend card when pressed
                           setState(() {
                             if (extended == true)
                               extended = false;
@@ -157,7 +152,6 @@ class _PlantCardState extends State<PlantCard> {
                       IconButton(
                         icon: Icon(Icons.arrow_drop_up),
                         onPressed: () {
-                          // TODO: Extend card when pressed
                           setState(() {
                             if (extended == true)
                               extended = false;
