@@ -191,12 +191,12 @@ class PlantService {
     }
   }
 
-  Future<bool> addToGarden(addedName, plantid, userid) async {
+  Future<bool> addToGarden(String addedName,int  plantid,int userid) async {
     var response = await http.post(Uri.parse(host + "/addToGarden"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, String>{
+        body: jsonEncode(<String, dynamic>{
           'addedName': addedName,
           'plantid': plantid,
           'userid': userid,
@@ -219,13 +219,17 @@ class PlantService {
 
   //TODO : create the schedule before adding note
 
-  Future<bool> addNote(
-      int idplant, String description, String imagePath,DateTime dateTime, int reminder, int scheduleid) async {}
+  Future<bool> addNote(int idplant, String description, String imagePath,
+      DateTime dateTime, int reminder, int scheduleid) async {
+    return true;
+  }
 
-  Future<int> addSchedule(
-      DateTime startDate, int frequencyInterval, DateTime timeOfDay, DateTime endDate) async {}
+  Future<int> addSchedule(DateTime startDate, int frequencyInterval,
+      DateTime timeOfDay, DateTime endDate) async {
+    return 0;
+  }
 
   Future<List<Note>> getNotes(int savedplantid) async {
-
+    return null;
   }
 }

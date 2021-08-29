@@ -8,13 +8,10 @@ import 'package:senior_project/services/plant.services.dart';
 import '../../../../constants.dart';
 
 PlantService _plantService = PlantService();
-List<Plant> demoInsects = [];
+List<Insect> demoInsects = [];
 
 class InsectsListWidget extends StatefulWidget {
-  const InsectsListWidget({
-    Key key,
-    @required this.plant
-  }) : super(key: key);
+  const InsectsListWidget({Key key, @required this.plant}) : super(key: key);
 
   final Plant plant;
 
@@ -28,7 +25,7 @@ class _InsectsListWidgetState extends State<InsectsListWidget> {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder<List<Insect>>(
         future: _plantService
-            .getAllPlants() // TODO: change to get all insects of this plant
+            .getRelatedInsects(widget.plant.id)
             .then((value) => demoInsects = value),
         builder: (context, AsyncSnapshot<List<Insect>> snapshot) {
           if (snapshot.hasData) {

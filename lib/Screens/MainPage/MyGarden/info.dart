@@ -5,10 +5,7 @@ import 'package:senior_project/constants.dart';
 import 'categoryList.dart';
 
 class Info extends StatefulWidget {
-  const Info({
-    Key key,
-    @required this.plant
-  }) : super(key: key);
+  const Info({Key key, @required this.plant}) : super(key: key);
 
   final Plant plant;
 
@@ -17,14 +14,13 @@ class Info extends StatefulWidget {
 }
 
 class _InfoState extends State<Info> {
+  //TODO: error bl size
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Info'
-        ),
+        title: Text('Info'),
       ),
       body: Container(
         color: kPrimaryColor,
@@ -35,8 +31,8 @@ class _InfoState extends State<Info> {
             children: <Widget>[
               SizedBox(height: size.height * 0.01),
               Container(
-                margin: EdgeInsets.fromLTRB(size.width * 0.1, size.height * 0.03,
-                    size.width * 0.1, size.height * 0.01),
+                margin: EdgeInsets.fromLTRB(size.width * 0.1,
+                    size.height * 0.03, size.width * 0.1, size.height * 0.01),
                 padding: EdgeInsets.symmetric(
                   horizontal: size.width * 0.05,
                 ),

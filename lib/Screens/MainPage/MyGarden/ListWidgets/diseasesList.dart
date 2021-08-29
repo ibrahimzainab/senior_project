@@ -8,13 +8,10 @@ import 'package:senior_project/services/plant.services.dart';
 import '../../../../constants.dart';
 
 PlantService _plantService = PlantService();
-List<Plant> demoDiseases = [];
+List<Disease> demoDiseases = [];
 
 class DiseasesListWidget extends StatefulWidget {
-  const DiseasesListWidget({
-    Key key,
-    @required this.plant
-  }) : super(key: key);
+  const DiseasesListWidget({Key key, @required this.plant}) : super(key: key);
 
   final Plant plant;
 
@@ -28,7 +25,7 @@ class _DiseasesListWidgetState extends State<DiseasesListWidget> {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder<List<Disease>>(
         future: _plantService
-            .getAllPlants() // TODO: get all this plant's diseases
+            .getRelatedDiseases(widget.plant.id)
             .then((value) => demoDiseases = value),
         builder: (context, AsyncSnapshot<List<Disease>> snapshot) {
           if (snapshot.hasData) {

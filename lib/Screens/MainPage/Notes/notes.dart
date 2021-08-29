@@ -51,8 +51,12 @@ class _NotesState extends State<Notes> {
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 30.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => EditNote(note: demoNotes[index],)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditNote(
+                                  note: demoNotes[index],
+                                )));
                     /* TODO:must update the list after pop
                     setState(() {
 

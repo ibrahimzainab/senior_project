@@ -200,12 +200,17 @@ exports.addToGarden = async(req, res, next) => {
     var plantid =req.body.plantid;
     var addedName = req.body.addedName;
     var userid = req.body.userid;
-    var date =Date.prototype.getFullYear+"-"+(Date.prototype.getMonth+1)+"-"+Date.prototype.getDate();
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy+ '-' + mm + '-' + dd;
     var plant = {
         idplant: plantid,
         iduser: userid,
         personalizedName: addedName,
-        dateOfPlanting: date,
+        dateOfPlanting: today,
+        watering:1
         }
     var sql = "INSERT INTO mydatabase.savedplant SET ?";
     db.query(sql, plant, function (err, row) {
@@ -218,7 +223,7 @@ exports.addToGarden = async(req, res, next) => {
         return res.status(201).json(
         {
            message: 'New Plant, New Journey!',
-           result: user,
+          
         });
     });
 }

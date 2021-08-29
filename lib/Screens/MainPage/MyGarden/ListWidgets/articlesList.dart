@@ -29,8 +29,8 @@ class _ArticlesListWidgetState extends State<ArticlesListWidget> {
         .of(context)
         .size;
     return FutureBuilder<List<Article>>(
-        future: //TODO: get only this plant's articles
-        _plantService.getArticles().then((value) => demoArticles = value),
+        future: 
+        _plantService.getRelatedArticles(widget.plant.id).then((value) => demoArticles = value),
         builder: (context, AsyncSnapshot<List<Article>> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
