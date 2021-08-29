@@ -120,6 +120,7 @@ class _ListWidgetState extends State<ListWidget> {
               .then((value) => demoPlants = value),
           builder: (context, AsyncSnapshot<List<Plant>> snapshot) {
             if (snapshot.hasData) {
+              filteredDemoPlants=demoPlants;
               return GridView.builder(
                 itemCount: demoPlants.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

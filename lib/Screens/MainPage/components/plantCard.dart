@@ -203,11 +203,14 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                 height: size.height * 0.1,
                 child: Column(
                   children: [
-                    Text(
-                      'No notes attached to this plant.',
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: Colors.grey,
+                    Padding(
+                      padding: EdgeInsets.all(size.height*0.05),
+                      child: Text(
+                        'No notes attached to this plant.',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
                     FloatingActionButton(
