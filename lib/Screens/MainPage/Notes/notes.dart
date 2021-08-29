@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/MainPage/Notes/editNote.dart';
 import 'package:senior_project/classes/note.dart';
+import 'package:senior_project/services/plant.services.dart';
 import '../../../constants.dart';
 import 'addNote.dart';
 import 'components/noteCard.dart';
+
+PlantService _plantService = PlantService();
 
 class Notes extends StatefulWidget {
   @override

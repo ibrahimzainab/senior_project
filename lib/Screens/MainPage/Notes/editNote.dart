@@ -7,18 +7,16 @@ class EditNote extends StatefulWidget {
   final Note note;
 
   @override
-  _EditNoteState createState() => _EditNoteState(note.title,note.text);
+  _EditNoteState createState() => _EditNoteState(note.title, note.text);
 }
 
-
 class _EditNoteState extends State<EditNote> {
-
   String initialTitle;
   var _titleController;
   String initialText;
   var _textController;
 
-  _EditNoteState(title,text){
+  _EditNoteState(title, text) {
     initialTitle = title;
     _titleController = TextEditingController(text: initialTitle);
     initialText = text;
@@ -50,30 +48,25 @@ class _EditNoteState extends State<EditNote> {
         actions: [
           reminderWidget,
           IconButton(
-              icon: Icon(
-                Icons.check,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                if(_titleController.text =='' || _textController.text =='') {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          "Title and text can't be empty!"
-                        ),
-                      )
-                  );
+            icon: Icon(
+              Icons.check,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              if (_titleController.text == '' || _textController.text == '') {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("Title and text can't be empty!"),
+                ));
+              } else {
+                if (_titleController.text != widget.note.title) {
+                  widget.note.editTitle(_titleController.text);
                 }
-                else{
-                  if (_titleController.text != widget.note.title) {
-                    widget.note.editTitle(_titleController.text);
-                  }
-                  if (_textController.text != widget.note.text) {
-                    widget.note.editText(_textController.text);
-                  }
-                  Navigator.pop(context);
+                if (_textController.text != widget.note.text) {
+                  widget.note.editText(_textController.text);
                 }
-              },
+                Navigator.pop(context);
+              }
+            },
           ),
         ],
       ),
@@ -104,16 +97,16 @@ class _EditNoteState extends State<EditNote> {
             Divider(),
             Flexible(
               child: Container(
-                  padding: EdgeInsets.all(5),
-                  child: EditableText(
-                    maxLines: 300,
-                    // line limit extendable later
-                    controller: _textController,
-                    focusNode: _contentFocus,
-                    style: TextStyle(color: Colors.black, fontSize: 20),
-                    backgroundCursorColor: Colors.red,
-                    cursorColor: Colors.blue,
-                  ),
+                padding: EdgeInsets.all(5),
+                child: EditableText(
+                  maxLines: 300,
+                  // line limit extendable later
+                  controller: _textController,
+                  focusNode: _contentFocus,
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                  backgroundCursorColor: Colors.red,
+                  cursorColor: Colors.blue,
+                ),
               ),
             ),
           ],
@@ -122,19 +115,19 @@ class _EditNoteState extends State<EditNote> {
     );
   }
 
-  Widget get reminderWidget{
-    Color color;
-    if(widget.note.reminder)
+  Widget get reminderWidget {
+    Color color = Colors.grey;
+    /*if(widget.note.reminder)
       color = Colors.black;
     else color = Colors.grey;
-
+*/
     return IconButton(
       icon: Icon(
         Icons.access_time,
         color: color,
       ),
-      onPressed: (){
-        if(widget.note.reminder==false){
+      onPressed: () {
+        /* if(widget.note.reminder==false){
           setState(() {
             widget.note.reminder =true;
           });
@@ -142,9 +135,8 @@ class _EditNoteState extends State<EditNote> {
         else
           setState(() {
             widget.note.reminder=false;
-          });
+          });*/
       },
     );
   }
 }
-

@@ -169,14 +169,16 @@ class _PlantCardState extends State<PlantCard> {
           SizedBox(
             height: size.height * 0.01,
           ),
-        if (extended)
-          NotesListWidget(),
+        if (extended) NotesListWidget(widget.plant.id),
       ],
     );
   }
 }
 
 class NotesListWidget extends StatefulWidget {
+  int savedPlantid;
+
+  NotesListWidget(int id);
 
   @override
   _NotesListWidgetState createState() => _NotesListWidgetState();
@@ -188,7 +190,7 @@ class _NotesListWidgetState extends State<NotesListWidget> {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder<List<Note>>(
         future: _plantService
-            .getAllSavedPlants(user.id) //TODO: get this plant's notes
+            .getNotes(widget.savedPlantid)
             .then((value) => demoNotes = value),
         builder: (context, AsyncSnapshot<List<Note>> snapshot) {
           if (snapshot.hasData) {
@@ -196,75 +198,78 @@ class _NotesListWidgetState extends State<NotesListWidget> {
               maxHeight = size.height * 0.15;
             else
               maxHeight = size.height * 0.3;
-            if(demoNotes.length==0)
-               return SizedBox(
-                  height: size.height * 0.1,
-                  child: Text(
-                    'No notes attached to this plant.',
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: Colors.grey,
-                    ),
+            if (demoNotes.length == 0)
+              return SizedBox(
+                height: size.height * 0.1,
+                child: Text(
+                  'No notes attached to this plant.',
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.grey,
                   ),
-                );
+                ),
+              );
             else
-            return LimitedBox(
-              maxHeight: maxHeight,
-              child: Stack(
-                children: [
-                  ListView.builder(
-                    itemCount: demoNotes.length,
-                    itemBuilder: (context, index) => Padding(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
-                      child: Dismissible(
-                        key: Key(demoNotes[index].id.toString()),
-                        direction: DismissDirection.endToStart,
-                        onDismissed: (direction) {
-                          setState(() {
-                            demoNotes.removeAt(index);
-                          });
-                        },
-                        background: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          decoration: BoxDecoration(
-                            color: kPrimaryLightColor,
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: Row(
-                            children: [
-                              Spacer(),
-                              Icon(Icons.delete),
-                            ],
-                          ),
-                        ),
-                        child: GardenNoteCard(note: demoNotes[index]),
-                      ),
-                    ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.fromLTRB(0, 0, size.width*0.07, size.width*0.05),
-                            child: FloatingActionButton(
-                              onPressed: (){
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => AddNote()));
-                              },
-                              child: Icon(Icons.add),
-                              backgroundColor: kPrimaryColor,
+              return LimitedBox(
+                maxHeight: maxHeight,
+                child: Stack(
+                  children: [
+                    ListView.builder(
+                      itemCount: demoNotes.length,
+                      itemBuilder: (context, index) => Padding(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
+                        child: Dismissible(
+                          key: Key(demoNotes[index].id.toString()),
+                          direction: DismissDirection.endToStart,
+                          onDismissed: (direction) {
+                            setState(() {
+                              demoNotes.removeAt(index);
+                            });
+                          },
+                          background: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: kPrimaryLightColor,
+                              borderRadius: BorderRadius.circular(20.0),
+                            ),
+                            child: Row(
+                              children: [
+                                Spacer(),
+                                Icon(Icons.delete),
+                              ],
                             ),
                           ),
-                        ],
+                          child: GardenNoteCard(note: demoNotes[index]),
+                        ),
                       ),
-                    ],
-                  )
-                ],
-              ),
-            );
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(
+                                  0, 0, size.width * 0.07, size.width * 0.05),
+                              child: FloatingActionButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => AddNote(widget.savedPlantid)));
+                                },
+                                child: Icon(Icons.add),
+                                backgroundColor: kPrimaryColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              );
           } else {
             return SizedBox(
                 width: size.width,
@@ -276,4 +281,3 @@ class _NotesListWidgetState extends State<NotesListWidget> {
         });
   }
 }
-

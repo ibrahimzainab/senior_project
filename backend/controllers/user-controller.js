@@ -229,19 +229,21 @@ exports.addToGarden = async(req, res, next) => {
 }
 
 exports.addNote= async(req, res, next) => {
-    var idplant =req.body.idplant;
     var description = req.body.description;
     var imagePath = req.body.imagePath;
-    var dateTime = req.body.dateTime;
     var reminder = req.body.reminder;
     var scheduleid = req.body.scheduleid;
     var title = req.body.title;
     var savedplantid = req.body.savedplantid;
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy+ '-' + mm + '-' + dd;
     var note = {
         idplant: idplant,
         description: description,
         imagePath: imagePath,
-        dateTime: dateTime,
+        date: today,
         reminder: reminder,
         scheduleid: scheduleid,
         title: title,

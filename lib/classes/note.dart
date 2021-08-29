@@ -6,9 +6,8 @@ class Note {
   String title, text;
   String image;
   int reminder, scheduleid;
-  DateTime date;
+  String date;
   int savedPlantid;
-
 
   Note(
       {this.id,
@@ -36,15 +35,14 @@ class Note {
 
   factory Note.fromJson(Map<String, dynamic> json) {
     return Note(
-      id: json['idnote'],
-      title: json['title'],
-      image: json['imagePath'],
-      text: json['description'],
-      date: json['dateTime'],
-      reminder: json['reminder'],
-      scheduleid: json['scheduleid'],
-      savedPlantid: json['savedplantid']
-    );
+        id: json['idnote'],
+        title: json['title'],
+        image: json['imagePath'],
+        text: json['description'],
+        date: json['date'],
+        reminder: json['reminder'],
+        scheduleid: json['scheduleid'],
+        savedPlantid: json['savedplantid']);
   }
 
   static List<Note> getNotes(List json) {

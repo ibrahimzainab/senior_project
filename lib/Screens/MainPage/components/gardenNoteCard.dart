@@ -19,7 +19,8 @@ class _GardenNoteCardState extends State<GardenNoteCard> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: EdgeInsets.fromLTRB(size.width * 0.1, 0, size.width * 0.1, size.height * 0.001),
+      padding: EdgeInsets.fromLTRB(
+          size.width * 0.1, 0, size.width * 0.1, size.height * 0.001),
       child: Container(
         margin: EdgeInsets.only(right: size.width * 0.02),
         decoration: BoxDecoration(
@@ -27,16 +28,16 @@ class _GardenNoteCardState extends State<GardenNoteCard> {
           borderRadius: BorderRadius.circular(22),
         ),
         child: Padding(
-          padding: EdgeInsets.all(size.width*0.03),
+          padding: EdgeInsets.all(size.width * 0.03),
           child: Center(
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => EditNote(
-                          note: widget.note,
-                        )));
+                              note: widget.note,
+                            )));
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,11 +75,13 @@ class _GardenNoteCardState extends State<GardenNoteCard> {
                     child: Text(
                       '${widget.note.text}',
                       style: TextStyle(
-                          color: Colors.black, fontSize: 16, letterSpacing: 1.0),
+                          color: Colors.black,
+                          fontSize: 16,
+                          letterSpacing: 1.0),
                       maxLines: 2,
                     ),
                   ),
-                  if (widget.note.reminder)
+                  if (widget.note.reminder == 1)
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

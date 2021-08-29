@@ -217,24 +217,15 @@ class PlantService {
     }
   }
 
-  Future<bool> addNote(
-      int idplant,
-      String description,
-      String imagePath,
-      DateTime dateTime,
-      int reminder,
-      int scheduleid,
-      String title,
-      int savedPlantid) async {
+  Future<bool> addNote(String description, String imagePath, int reminder,
+      int scheduleid, String title, int savedPlantid) async {
     var response = await http.post(Uri.parse(host + "/addNote"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, dynamic>{
-          'idplant': idplant,
           'description': description,
           'imagePath': imagePath,
-          'dateTime': dateTime,
           'reminder': reminder,
           'scheduleid': scheduleid,
           'title': title,
