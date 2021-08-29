@@ -218,7 +218,7 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => AddNote(widget.savedPlantid)));
+                                builder: (context) => AddNote(savedPlantId: widget.savedPlantid)));
                       },
                       child: Icon(Icons.add),
                       backgroundColor: kPrimaryColor,
@@ -274,7 +274,7 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => AddNote(widget.savedPlantid)));
+                                          builder: (context) => AddNote(savedPlantId: widget.savedPlantid)));
                                 },
                                 child: Icon(Icons.add),
                                 backgroundColor: kPrimaryColor,
