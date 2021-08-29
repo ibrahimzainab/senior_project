@@ -140,15 +140,13 @@ class _NewsWidgetState extends State<NewsWidget> {
       style: ButtonStyle(
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
-              side: BorderSide(color: kPrimaryColor, width: 1),
-            )),
+          borderRadius: BorderRadius.circular(20.0),
+          side: BorderSide(color: kPrimaryColor, width: 1),
+        )),
       ),
       onPressed: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => News()));
+            context, MaterialPageRoute(builder: (context) => News()));
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

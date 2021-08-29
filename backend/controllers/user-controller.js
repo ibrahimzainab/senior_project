@@ -235,12 +235,12 @@ exports.addNote= async(req, res, next) => {
     var scheduleid = req.body.scheduleid;
     var title = req.body.title;
     var savedplantid = req.body.savedplantid;
+    var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = yyyy+ '-' + mm + '-' + dd;
     var note = {
-        idplant: idplant,
         description: description,
         imagePath: imagePath,
         date: today,
