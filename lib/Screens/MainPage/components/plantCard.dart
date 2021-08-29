@@ -201,12 +201,26 @@ class _NotesListWidgetState extends State<NotesListWidget> {
             if (demoNotes.length == 0)
               return SizedBox(
                 height: size.height * 0.1,
-                child: Text(
-                  'No notes attached to this plant.',
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: Colors.grey,
-                  ),
+                child: Column(
+                  children: [
+                    Text(
+                      'No notes attached to this plant.',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    FloatingActionButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AddNote(widget.savedPlantid)));
+                      },
+                      child: Icon(Icons.add),
+                      backgroundColor: kPrimaryColor,
+                    ),
+                  ],
                 ),
               );
             else

@@ -89,8 +89,8 @@ class _NotesListWidgetState extends State<NotesListWidget> {
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 30.0),
                 child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
+                  onTap: () async{
+                    await Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => EditNote(

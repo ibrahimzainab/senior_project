@@ -3,6 +3,7 @@ import 'package:senior_project/classes/user.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:weather/weather.dart';
 import 'package:senior_project/constants.dart';
+import 'components/news.dart';
 import 'components/weatherwidget.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -59,7 +60,7 @@ Widget bodyContent(context) {
         Container(
             width: size.width,
             height: size.height * 0.09,
-            child: newsWidget,
+            child: NewsWidget(),
             decoration: BoxDecoration(
               boxShadow: [kBoxShadow],
               color: Colors.white,
@@ -127,36 +128,49 @@ Widget get topMessageWidget {
   );
 }
 
-Widget get newsWidget {
-  return TextButton(
-    style: ButtonStyle(
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20.0),
-        side: BorderSide(color: kPrimaryColor, width: 1),
-      )),
-    ),
-    onPressed: () {},
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset("assets/icons/newspaper.png"),
-          SizedBox(width: size.width * 0.02),
-          Text(
-            " What's new?",
-            style: TextStyle(
-              fontFamily: 'DMSerifText',
-              color: Colors.black,
-              letterSpacing: 1.0,
-              fontSize: 40.0,
-            ),
-          )
-        ],
+class NewsWidget extends StatefulWidget {
+  @override
+  _NewsWidgetState createState() => _NewsWidgetState();
+}
+
+class _NewsWidgetState extends State<NewsWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
+              side: BorderSide(color: kPrimaryColor, width: 1),
+            )),
       ),
-    ),
-  );
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => News()));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset("assets/icons/newspaper.png"),
+            SizedBox(width: size.width * 0.02),
+            Text(
+              " What's new?",
+              style: TextStyle(
+                fontFamily: 'DMSerifText',
+                color: Colors.black,
+                letterSpacing: 1.0,
+                fontSize: 40.0,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 Widget get agriculturalCalenderWidget {
