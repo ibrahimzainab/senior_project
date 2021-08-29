@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/Login/login_screen.dart';
+import 'package:senior_project/Screens/MainPage/Notes/notes.dart';
 import 'package:senior_project/Screens/MainPage/catalog.dart';
 import 'package:senior_project/Screens/MainPage/home.dart';
 import 'package:senior_project/classes/user.dart';
@@ -20,7 +21,7 @@ class _MainPageState extends State<MainPage> {
     Garden(),
     Catalog(),
     Articles(),
-    LoginScreen(),
+    Notes(),
   ];
 
   @override

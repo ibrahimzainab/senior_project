@@ -8,6 +8,7 @@ import 'package:senior_project/Screens/Register/register_screen.dart';
 import 'package:senior_project/Screens/Welcome/components/roundedbutton.dart';
 import 'package:senior_project/classes/user.dart';
 import 'package:senior_project/services/auth.service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 AuthService _authService = AuthService();
 
@@ -56,6 +57,9 @@ class Body extends StatelessWidget {
                     usernameController.text.trim().toString(),
                     passwordController.text.trim().toString());
                 if (user != null) {
+                  SharedPreferences preferences =
+                      await SharedPreferences.getInstance();
+                  
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => MainPage()));
                 }

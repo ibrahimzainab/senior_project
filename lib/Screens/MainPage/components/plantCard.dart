@@ -8,6 +8,7 @@ import 'package:senior_project/services/plant.services.dart';
 import 'gardenNoteCard.dart';
 
 PlantService _plantService = PlantService();
+List<Note> demoNotes = [];
 
 class PlantCard extends StatefulWidget {
   const PlantCard({

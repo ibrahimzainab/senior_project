@@ -24,7 +24,7 @@ class _NoteCardState extends State<NoteCard> {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(22),
-          color: kPrimaryLightColor,
+          color: kPrimaryColor.withOpacity(0.3),
           boxShadow: [kBoxShadow],
         ),
         height: size.height * 0.15,
@@ -77,7 +77,7 @@ class _NoteCardState extends State<NoteCard> {
                         maxLines: 3,
                       ),
                     ),
-                    if (widget.note.reminder)
+                    if (widget.note.reminder==1)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [

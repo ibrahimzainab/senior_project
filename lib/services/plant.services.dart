@@ -141,7 +141,7 @@ class PlantService {
 
   Future<List<Article>> getRelatedArticles(int idplant) async {
     List<Article> list;
-    var response = await http.post(Uri.parse(host + "/getRelatedInsects"),
+    var response = await http.post(Uri.parse(host + "/getRelatedArticles"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -167,7 +167,7 @@ class PlantService {
 
   Future<List<Disease>> getRelatedDiseases(int idplant) async {
     List<Disease> list;
-    var response = await http.post(Uri.parse(host + "/getRelatedInsects"),
+    var response = await http.post(Uri.parse(host + "/getRelatedDiseases"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -191,7 +191,7 @@ class PlantService {
     }
   }
 
-  Future<bool> addToGarden(String addedName,int  plantid,int userid) async {
+  Future<bool> addToGarden(String addedName, int plantid, int userid) async {
     var response = await http.post(Uri.parse(host + "/addToGarden"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
@@ -217,19 +217,95 @@ class PlantService {
     }
   }
 
-  //TODO : create the schedule before adding note
-
-  Future<bool> addNote(int idplant, String description, String imagePath,
-      DateTime dateTime, int reminder, int scheduleid) async {
-    return true;
+  Future<bool> addNote(
+      int idplant,
+      String description,
+      String imagePath,
+      DateTime dateTime,
+      int reminder,
+      int scheduleid,
+      String title,
+      int savedPlantid) async {
+    var response = await http.post(Uri.parse(host + "/addNote"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'idplant': idplant,
+          'description': description,
+          'imagePath': imagePath,
+          'dateTime': dateTime,
+          'reminder': reminder,
+          'scheduleid': scheduleid,
+          'title': title,
+          'savedplantid': savedPlantid,
+        }));
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return false;
+    }
   }
 
   Future<int> addSchedule(DateTime startDate, int frequencyInterval,
       DateTime timeOfDay, DateTime endDate) async {
-    return 0;
+    var response = await http.post(Uri.parse(host + "/addToGarden"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'startDate': startDate,
+          'frequencyInterval': frequencyInterval,
+          'timeOfDay': timeOfDay,
+          'endDate': endDate,
+        }));
+    if (response.statusCode == 201) {
+      int scheduleid = json.decode(response.body)['scheduleid'];
+      return scheduleid;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return 0;
+    }
   }
 
   Future<List<Note>> getNotes(int savedplantid) async {
-    return null;
+    List<Note> list;
+    var response = await http.post(Uri.parse(host + "/getNotes"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, int>{
+          'savedplantid': savedplantid,
+        }));
+    if (response.statusCode == 201) {
+      var noteJson = json.decode(response.body)['notes'];
+      list = Note.getNotes(noteJson);
+      return list;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return null;
+    }
   }
 }

@@ -228,3 +228,81 @@ exports.addToGarden = async(req, res, next) => {
     });
 }
 
+exports.addNote= async(req, res, next) => {
+    var idplant =req.body.idplant;
+    var description = req.body.description;
+    var imagePath = req.body.imagePath;
+    var dateTime = req.body.dateTime;
+    var reminder = req.body.reminder;
+    var scheduleid = req.body.scheduleid;
+    var title = req.body.title;
+    var savedplantid = req.body.savedplantid;
+    var note = {
+        idplant: idplant,
+        description: description,
+        imagePath: imagePath,
+        dateTime: dateTime,
+        reminder: reminder,
+        scheduleid: scheduleid,
+        title: title,
+        savedplantid: savedplantid,
+        }
+    var sql = "INSERT INTO mydatabase.note SET ?";
+    db.query(sql, note, function (err,result, fields) {
+        if(err) {
+            return res.status(500).send(
+            {
+                error: err
+            });
+        }
+        return res.status(201).json(
+        {
+           message: 'New Note, Keep an eye!',
+        });
+    });
+}
+
+exports.addSchedule= async(req, res, next) => {
+    var startDate = req.body.startDate;
+    var frequencyInterval = req.body.frequencyInterval;
+    var timeOfDay = req.body.timeOfDay;
+    var endDate = req.body.endDate;
+
+    var schedule = {
+        startDate : startDate,
+        frequencyInterval: frequencyInterval,
+        timeOfDay: timeOfDay,
+        endDate: endDate,
+    }
+    
+    var sql = "INSERT INTO mydatabase.note SET ?";
+    db.query(sql, schedule, function (err,result, fields) {
+        if(err) {
+            return res.status(500).send(
+            {
+                error: err
+            });
+        }
+        return res.status(201).json(
+        {
+           message: 'Success!',
+           scheduleid: result.insertId,
+        });
+    });
+}
+
+exports.getNotes = async(req, res, next) => {
+    var savedplantid = req.body.savedplantid;
+    var sql = "SELECT * FROM mydatabase.note WHERE savedplantid = ?";
+    db.query(sql, [savedplantid],function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                notes: data,
+            });
+        }
+    });
+
+}

@@ -17,5 +17,8 @@ router.post('/getRelatedArticles', actions.getRelatedArticles)
 router.post('/getRelatedInsects', actions.getRelatedInsects)
 router.post('/getRelatedDiseases', actions.getRelatedDiseases)
 router.post('/addToGarden', actions.addToGarden)
+router.post('/addNote', actions.addNote)
+router.post('/addSchedule', actions.addSchedule)
+router.post('/getNotes', actions.getNotes)
 
 module.exports = router;
