@@ -204,7 +204,7 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(size.height*0.05),
+                      padding: EdgeInsets.all(size.height*0.01),
                       child: Text(
                         'No notes attached to this plant.',
                         style: TextStyle(
