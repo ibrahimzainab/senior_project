@@ -27,6 +27,7 @@ class PlantCard extends StatefulWidget {
 
 class _PlantCardState extends State<PlantCard> {
   bool extended = false;
+  int change=0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +47,15 @@ class _PlantCardState extends State<PlantCard> {
           onTap: () async {
             Plant p = await _plantService.getPlant(widget.plant.idplant);
             if (p != null) {
-              Navigator.push(
+              await Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => ViewPlant(
                             plant: p,
                           )));
+              setState(() {
+                change++;
+              });
             }
           },
           child: Container(
@@ -185,6 +189,7 @@ class NotesListWidget extends StatefulWidget {
 }
 
 class _NotesListWidgetState extends State<NotesListWidget> {
+  int change=0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -271,13 +276,16 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                               padding: EdgeInsets.fromLTRB(
                                   0, 0, size.width * 0.07, size.width * 0.05),
                               child: FloatingActionButton(
-                                onPressed: () {
-                                  Navigator.push(
+                                onPressed: () async{
+                                  await Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => AddNote(
                                               savedPlantId:
                                                   widget.savedPlantid)));
+                                  setState(() {
+                                    change++;
+                                  });
                                 },
                                 child: Icon(Icons.add),
                                 backgroundColor: kPrimaryColor,
