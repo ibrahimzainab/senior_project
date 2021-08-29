@@ -4,8 +4,13 @@ import 'package:senior_project/services/plant.services.dart';
 PlantService _plantService = PlantService();
 
 class AddNote extends StatefulWidget {
-  final int savedPlantid;
-  AddNote(this.savedPlantid);
+
+  const AddNote({
+    Key key,
+    @required this.savedPlantId,
+  }) : super(key: key);
+
+  final int savedPlantId;
 
   @override
   _AddNoteState createState() => _AddNoteState();
@@ -62,7 +67,7 @@ class _AddNoteState extends State<AddNote> {
                     0,
                     null,
                     _titleController.text.trim().toString(),
-                    widget.savedPlantid);
+                    widget.savedPlantId);
                 Navigator.pop(context);
               }
             },

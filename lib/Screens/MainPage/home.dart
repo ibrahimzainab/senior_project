@@ -39,7 +39,7 @@ Widget bodyContent(context) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        topMessageWidget,
+        TopMessageWidget(),
         SizedBox(
           height: size.height * 0.03,
         ),
@@ -107,26 +107,47 @@ Future<String> getWeather() async {
   return weather.toString();
 }
 
-Widget get topMessageWidget {
-  return RichText(
-    text: TextSpan(
-      text: 'Hello ',
-      style: TextStyle(
-        fontSize: 25.0,
-        fontFamily: 'DMSerifText',
-        letterSpacing: 1.0,
-        color: Colors.black,
-      ),
-      children: <TextSpan>[
-        TextSpan(
-            text: '${User.user.name}',
-            style: TextStyle(
-                fontWeight: FontWeight.bold, color: Color(0xFFBF365A))),
-        TextSpan(text: ',\nSuch a beautiful day!'),
-      ],
-    ),
-  );
+class TopMessageWidget extends StatefulWidget {
+
+  @override
+  _TopMessageWidgetState createState() => _TopMessageWidgetState();
 }
+
+class _TopMessageWidgetState extends State<TopMessageWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        RichText(
+          text: TextSpan(
+            text: 'Hello ',
+            style: TextStyle(
+              fontSize: 25.0,
+              fontFamily: 'DMSerifText',
+              letterSpacing: 1.0,
+              color: Colors.black,
+            ),
+            children: <TextSpan>[
+              TextSpan(
+                  text: '${User.user.name}',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Color(0xFFBF365A))),
+              TextSpan(text: ',\nSuch a beautiful day!'),
+            ],
+          ),
+        ),
+        Spacer(),
+        IconButton(
+          icon: Icon(Icons.logout),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        )
+      ],
+    );
+  }
+}
+
 
 class NewsWidget extends StatefulWidget {
   @override
