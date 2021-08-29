@@ -9,7 +9,7 @@ class User {
   String region;
   String major;
 
-  static final User user = User._internal();
+  static User user = User._internal();
 
   User._internal();
 
@@ -26,5 +26,7 @@ class User {
     return user;
   }
 
-
+  static void logout() {
+    user = null;
+  }
 }

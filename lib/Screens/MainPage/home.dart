@@ -108,7 +108,6 @@ Future<String> getWeather() async {
 }
 
 class TopMessageWidget extends StatefulWidget {
-
   @override
   _TopMessageWidgetState createState() => _TopMessageWidgetState();
 }
@@ -139,7 +138,8 @@ class _TopMessageWidgetState extends State<TopMessageWidget> {
         Spacer(),
         IconButton(
           icon: Icon(Icons.logout),
-          onPressed: (){
+          onPressed: () {
+            User.logout();
             Navigator.pop(context);
           },
         )
@@ -147,7 +147,6 @@ class _TopMessageWidgetState extends State<TopMessageWidget> {
     );
   }
 }
-
 
 class NewsWidget extends StatefulWidget {
   @override
