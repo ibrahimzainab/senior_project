@@ -4,6 +4,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:weather/weather.dart';
 import 'package:senior_project/constants.dart';
 import 'components/news.dart';
+import 'components/suggestion.dart';
 import 'components/weatherwidget.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
@@ -87,7 +88,7 @@ Widget bodyContent(context) {
             Container(
                 width: size.width * 0.43,
                 height: size.height * 0.18,
-                child: suggestionWidget,
+                child: SuggestionWidget(),
                 decoration: BoxDecoration(
                   boxShadow: [kBoxShadow],
                   color: Colors.white,
@@ -226,40 +227,48 @@ Widget get agriculturalCalenderWidget {
   );
 }
 
-Widget get suggestionWidget {
-  return TextButton(
-    style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20.0),
-      side: BorderSide(color: kPrimaryColor, width: 1),
-    ))),
-    onPressed: () {},
-    child: Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Image.asset(
-            "assets/icons/consulting.png",
-            height: size.height * 0.06,
-          ),
-          SizedBox(height: size.height * 0.02),
-          Text(
-            "Need a suggestion?",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontFamily: 'DMSerifText',
-              color: Colors.black,
-              letterSpacing: 2.0,
-              fontSize: 20.0,
+class SuggestionWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+                side: BorderSide(color: kPrimaryColor, width: 1),
+              ))),
+      onPressed: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => SuggestionForm()));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              "assets/icons/consulting.png",
+              height: size.height * 0.06,
             ),
-          ),
-        ],
+            SizedBox(height: size.height * 0.02),
+            Text(
+              "Need a suggestion?",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'DMSerifText',
+                color: Colors.black,
+                letterSpacing: 2.0,
+                fontSize: 20.0,
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
+
 /*
 FlutterLocalNotificationsPlugin localNotification;
 

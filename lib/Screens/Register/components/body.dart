@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:senior_project/Screens/Login/components/already_have_an_account_check.dart';
 import 'package:senior_project/Screens/Login/components/textfieldcontainer.dart';
+import 'package:senior_project/Screens/Login/login_screen.dart';
 import 'package:senior_project/Screens/MainPage/main_page.dart';
 import 'package:senior_project/Screens/Register/components/background.dart';
 import 'package:senior_project/Screens/Register/components/roundedinputfield.dart';
@@ -153,7 +154,12 @@ class _BodyState extends State<Body> {
               }),
           SizedBox(height: size.height * 0.02),
           AlreadyHaveAnAccountCheck(
-            press: () {},
+            press: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => LoginScreen()));
+            },
             login: false,
           )
         ],
