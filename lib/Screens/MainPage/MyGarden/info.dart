@@ -18,44 +18,57 @@ class _InfoState extends State<Info> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
+    /*return Scaffold(
       appBar: AppBar(
         title: Text('Info'),
       ),
-      body: Container(
-        color: kPrimaryColor,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(0, 1.0, 0, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: size.height * 0.01),
-              Container(
-                margin: EdgeInsets.fromLTRB(size.width * 0.1,
-                    size.height * 0.03, size.width * 0.1, size.height * 0.01),
-                padding: EdgeInsets.symmetric(
-                  horizontal: size.width * 0.05,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: TextField(
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                  decoration: InputDecoration(
-                    enabledBorder: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    icon: Icon(Icons.search, color: Colors.white),
-                    hintText: 'Search',
-                    hintStyle: TextStyle(color: Colors.white),
-                  ),
+      body: SingleChildScrollView(*/
+    return Scaffold(
+      backgroundColor: kPrimaryColor,
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(0, size.height * 0.05, 0, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  size.width * 0.06, 0, size.width * 0.03, 0),
+              child: Text(
+                'Info',
+                style: TextStyle(
+                  fontSize: 30.0,
+                  color: Colors.white,
                 ),
               ),
-              CategoryList(plant: widget.plant),
-            ],
-          ),
+            ),
+            Divider(),
+            SizedBox(height: size.height * 0.01),
+            Container(
+              margin: EdgeInsets.fromLTRB(size.width * 0.1, size.height * 0.03,
+                  size.width * 0.1, size.height * 0.01),
+              padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.05,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.4),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: TextField(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                decoration: InputDecoration(
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  icon: Icon(Icons.search, color: Colors.white),
+                  hintText: 'Search',
+                  hintStyle: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            SizedBox(height: size.height * 0.01),
+            CategoryList(plant: widget.plant),
+          ],
         ),
       ),
     );

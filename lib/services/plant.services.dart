@@ -233,6 +233,14 @@ class PlantService {
           'savedplantid': savedPlantid,
         }));
     if (response.statusCode == 201) {
+      Fluttertoast.showToast(
+          msg: "Note successfully added",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
       return true;
     } else {
       Fluttertoast.showToast(
@@ -336,6 +344,76 @@ class PlantService {
           'description': text
         }));
     if (response.statusCode == 201) {
+      Fluttertoast.showToast(
+          msg: "Note successfully edited",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return true;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return false;
+    }
+  }
+
+  Future<bool> deleteNote(int noteid) async {
+    var response = await http.post(Uri.parse(host + "/deleteNote"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'noteid': noteid,
+        }));
+    if (response.statusCode == 201) {
+      Fluttertoast.showToast(
+          msg: "Note successfully deleted",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return true;
+    } else {
+      Fluttertoast.showToast(
+          msg: "Unexpected error has occured",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
+      return false;
+    }
+  }
+
+  Future<bool> deleteSavedPlant(int idsavedplant) async {
+    var response = await http.post(Uri.parse(host + "/deleteSavedPlant"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'idsavedplant': idsavedplant,
+        }));
+    if (response.statusCode == 201) {
+      Fluttertoast.showToast(
+          msg: "Plant successfully deleted",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: kPrimaryLightColor,
+          fontSize: 16.0);
       return true;
     } else {
       Fluttertoast.showToast(

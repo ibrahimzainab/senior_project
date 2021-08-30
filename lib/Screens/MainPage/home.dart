@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/Screens/Welcome/welcome_screen.dart';
 import 'package:senior_project/classes/user.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:weather/weather.dart';
@@ -141,7 +142,8 @@ class _TopMessageWidgetState extends State<TopMessageWidget> {
           icon: Icon(Icons.logout),
           onPressed: () {
             User.logout();
-            Navigator.pop(context);
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => WelcomeScreen()));
           },
         )
       ],

@@ -57,8 +57,6 @@ class Body extends StatelessWidget {
                     usernameController.text.trim().toString(),
                     passwordController.text.trim().toString());
                 if (user != null) {
-                  SharedPreferences preferences =
-                      await SharedPreferences.getInstance();
                   
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => MainPage()));
