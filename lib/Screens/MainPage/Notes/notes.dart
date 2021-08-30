@@ -59,22 +59,20 @@ class _NotesState extends State<Notes> {
 }
 
 class NotesListWidget extends StatefulWidget {
-
   @override
   _NotesListWidgetState createState() => _NotesListWidgetState();
 }
 
 class _NotesListWidgetState extends State<NotesListWidget> {
-  int change =0;
+  int change = 0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder<List<Note>>(
-        future:
-        _plantService.getAllNotes().then((value) => demoNotes = value),
+        future: _plantService.getAllNotes().then((value) => demoNotes = value),
         builder: (context, AsyncSnapshot<List<Note>> snapshot) {
           if (snapshot.hasData) {
-            if(demoNotes.isEmpty)
+            if (demoNotes.isEmpty)
               return Center(
                 child: Text(
                   'No added notes.',
@@ -89,13 +87,13 @@ class _NotesListWidgetState extends State<NotesListWidget> {
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 30.0),
                 child: GestureDetector(
-                  onTap: () async{
+                  onTap: () async {
                     await Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => EditNote(
-                              note: demoNotes[index],
-                            )));
+                                  note: demoNotes[index],
+                                )));
                     setState(() {
                       change++;
                     });
@@ -103,10 +101,14 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                   child: Dismissible(
                     key: Key(demoNotes[index].id.toString()),
                     direction: DismissDirection.endToStart,
-                    onDismissed: (direction) {
-                      setState(() {
-                        demoNotes.removeAt(index);
-                      });
+                    onDismissed: (direction) async {
+                      bool result =
+                          await _plantService.deleteNote(demoNotes[index].id);
+                      if (result == true) {
+                        setState(() {
+                          demoNotes.removeAt(index);
+                        });
+                      }
                     },
                     background: Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),

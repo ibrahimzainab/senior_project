@@ -27,7 +27,7 @@ class PlantCard extends StatefulWidget {
 
 class _PlantCardState extends State<PlantCard> {
   bool extended = false;
-  int change=0;
+  int change = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -189,7 +189,7 @@ class NotesListWidget extends StatefulWidget {
 }
 
 class _NotesListWidgetState extends State<NotesListWidget> {
-  int change=0;
+  int change = 0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -219,8 +219,8 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                       ),
                     ),
                     Container(
-                      height: size.height*0.05,
-                      width: size.height*0.05,
+                      height: size.height * 0.05,
+                      width: size.height * 0.05,
                       child: FloatingActionButton(
                         onPressed: () {
                           Navigator.push(
@@ -248,10 +248,14 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                         child: Dismissible(
                           key: Key(demoNotes[index].id.toString()),
                           direction: DismissDirection.endToStart,
-                          onDismissed: (direction) {
-                            setState(() {
-                              demoNotes.removeAt(index);
-                            });
+                          onDismissed: (direction) async {
+                            bool result = await _plantService
+                                .deleteNote(demoNotes[index].id);
+                            if (result == true) {
+                              setState(() {
+                                demoNotes.removeAt(index);
+                              });
+                            }
                           },
                           background: Container(
                             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -280,7 +284,7 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                               padding: EdgeInsets.fromLTRB(
                                   0, 0, size.width * 0.07, size.width * 0.05),
                               child: FloatingActionButton(
-                                onPressed: () async{
+                                onPressed: () async {
                                   await Navigator.push(
                                       context,
                                       MaterialPageRoute(

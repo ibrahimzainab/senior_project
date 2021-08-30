@@ -59,8 +59,7 @@ class _InsectCardState extends State<InsectCard> {
                         //this child should be an image
                         child: Hero(
                           tag: 'details-${widget.insect.id}',
-                          child: Image.asset(
-                              'assets/images/plant_grainy_illustration_alinashi.png'),
+                          child: Image.asset('${widget.insect.imagePath}'),
                         ),
                       ),
                     ),

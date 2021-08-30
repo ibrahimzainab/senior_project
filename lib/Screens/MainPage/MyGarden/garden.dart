@@ -49,7 +49,6 @@ class _GardenState extends State<Garden> {
             Divider(
               height: size.height * 0.05,
             ),
-            
             Expanded(
               child: Stack(children: <Widget>[
                 Container(
@@ -92,10 +91,14 @@ class _ListWidgetState extends State<ListWidget> {
                 child: Dismissible(
                   key: Key(demoGardenPlants[index].id.toString()),
                   direction: DismissDirection.endToStart,
-                  onDismissed: (direction) {
-                    setState(() {
-                      demoGardenPlants.removeAt(index);
-                    });
+                  onDismissed: (direction) async {
+                    bool result = await _plantService
+                        .deleteSavedPlant(demoGardenPlants[index].id);
+                    if (result == true) {
+                      setState(() {
+                        demoGardenPlants.removeAt(index);
+                      });
+                    }
                   },
                   background: Container(
                     padding: EdgeInsets.symmetric(horizontal: 20),

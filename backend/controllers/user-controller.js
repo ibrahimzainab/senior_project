@@ -343,3 +343,35 @@ exports.editNote = async(req, res, next) => {
     });
 
 }
+
+exports.deleteNote = async(req, res, next) => {
+    var noteid = req.body.noteid;
+
+    var sql = "DELETE FROM mydatabase.note WHERE idnote = ?";
+    db.query(sql, [noteid],function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                message: "Success!",
+            });
+        }
+    });
+}
+
+exports.deleteSavedPlant = async(req, res, next) => {
+    var idsavedplant = req.body.idsavedplant;
+
+    var sql = "DELETE FROM mydatabase.savedplant WHERE idsavedplant = ?";
+    db.query(sql, [idsavedplant],function(err, data, fields) {
+        if(err) {
+            return res.send('error: '+ err);
+        }
+        else {   
+            return res.status(201).json({
+                message: "Success!",
+            });
+        }
+    });
+}
