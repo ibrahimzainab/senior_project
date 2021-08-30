@@ -28,18 +28,12 @@ class _ArticlesListWidgetState extends State<ArticlesListWidget> {
 
   void _runFilter(String enteredKeyword) {
     if (enteredKeyword.isEmpty) {
-      // if the search field is empty or only contains white-space, we'll display all users
-      setState(() {
         filteredDemoArticles = demoArticles;
-      });
     } else {
-      setState(() {
         filteredDemoArticles = demoArticles
             .where((article) =>
             article.title.toLowerCase().contains(enteredKeyword.toLowerCase()))
             .toList();
-      });
-      // we use the toLowerCase() method to make it case-insensitive
     }
   }
 

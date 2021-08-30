@@ -25,17 +25,12 @@ class _DiseasesListWidgetState extends State<DiseasesListWidget> {
 
   void _runFilter(String enteredKeyword) {
     if (enteredKeyword.isEmpty) {
-      // if the search field is empty or only contains white-space, we'll display all users
-      setState(() {
         filteredDemoDiseases = demoDiseases;
-      });
     } else {
-      setState(() {
         filteredDemoDiseases = demoDiseases
             .where((disease) =>
             disease.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
             .toList();
-      });
       // we use the toLowerCase() method to make it case-insensitive
     }
   }
