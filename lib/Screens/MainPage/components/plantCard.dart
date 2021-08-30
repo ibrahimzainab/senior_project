@@ -222,12 +222,15 @@ class _NotesListWidgetState extends State<NotesListWidget> {
                       height: size.height * 0.05,
                       width: size.height * 0.05,
                       child: FloatingActionButton(
-                        onPressed: () {
-                          Navigator.push(
+                        onPressed: () async{
+                          await Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => AddNote(
                                       savedPlantId: widget.savedPlantid)));
+                          setState(() {
+                            change++;
+                          });
                         },
                         child: Icon(Icons.add),
                         backgroundColor: kPrimaryColor,
