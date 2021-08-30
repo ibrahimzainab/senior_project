@@ -15,6 +15,7 @@ class GardenNoteCard extends StatefulWidget {
 }
 
 class _GardenNoteCardState extends State<GardenNoteCard> {
+  int change = 0;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -31,13 +32,16 @@ class _GardenNoteCardState extends State<GardenNoteCard> {
           padding: EdgeInsets.all(size.width * 0.03),
           child: Center(
             child: GestureDetector(
-              onTap: () {
-                Navigator.push(
+              onTap: () async{
+                await Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => EditNote(
                               note: widget.note,
                             )));
+                setState(() {
+                  change++;
+                });
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
