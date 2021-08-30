@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/Screens/MainPage/MyGarden/viewInsect.dart';
 import 'package:senior_project/classes/insect.dart';
 import 'package:senior_project/constants.dart';
 
@@ -20,12 +21,12 @@ class _InsectCardState extends State<InsectCard> {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => ViewInsect(
-        //           insect: widget.insect,
-        //         )));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ViewInsect(
+                  insect: widget.insect,
+                )));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/Screens/MainPage/MyGarden/viewDisease.dart';
 import 'package:senior_project/classes/disease.dart';
 
 import '../../../constants.dart';
@@ -21,12 +22,12 @@ class _DiseaseCardState extends State<DiseaseCard> {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(
-        //         builder: (context) => ViewInsect(
-        //           insect: widget.insect,
-        //         )));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ViewDisease(
+                  disease: widget.disease,
+                )));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

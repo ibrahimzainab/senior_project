@@ -118,6 +118,7 @@ class _ViewPlantState extends State<ViewPlant> {
                 child: Hero(
                   tag: 'details-${widget.plant.id}',
                   child: CircleAvatar(
+                    backgroundColor: kPrimaryColor,
                     backgroundImage: AssetImage(
                         'assets/images/plant_grainy_illustration_alinashi.png'),
                     //AssetImage(widget.plant.image),
