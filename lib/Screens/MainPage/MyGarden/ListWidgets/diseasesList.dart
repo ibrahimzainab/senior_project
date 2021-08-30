@@ -9,10 +9,12 @@ import '../../../../constants.dart';
 
 PlantService _plantService = PlantService();
 List<Disease> demoDiseases = [];
+List<Disease> filteredDemoDiseases = [];
 
 class DiseasesListWidget extends StatefulWidget {
-  const DiseasesListWidget({Key key, @required this.plant}) : super(key: key);
+  const DiseasesListWidget({Key key, @required this.plant,@required this.searchKeyWord}) : super(key: key);
 
+  final String searchKeyWord;
   final Plant plant;
 
   @override
@@ -20,6 +22,24 @@ class DiseasesListWidget extends StatefulWidget {
 }
 
 class _DiseasesListWidgetState extends State<DiseasesListWidget> {
+
+  void _runFilter(String enteredKeyword) {
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      setState(() {
+        filteredDemoDiseases = demoDiseases;
+      });
+    } else {
+      setState(() {
+        filteredDemoDiseases = demoDiseases
+            .where((disease) =>
+            disease.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
+            .toList();
+      });
+      // we use the toLowerCase() method to make it case-insensitive
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,7 +49,8 @@ class _DiseasesListWidgetState extends State<DiseasesListWidget> {
             .then((value) => demoDiseases = value),
         builder: (context, AsyncSnapshot<List<Disease>> snapshot) {
           if (snapshot.hasData) {
-            if (demoDiseases.length == 0)
+            _runFilter(widget.searchKeyWord);
+            if (filteredDemoDiseases.length == 0)
               return Center(
                 child: Text(
                   'No related diseases.',
@@ -41,7 +62,7 @@ class _DiseasesListWidgetState extends State<DiseasesListWidget> {
               );
             else
             return GridView.builder(
-              itemCount: demoDiseases.length,
+              itemCount: filteredDemoDiseases.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 0,
@@ -51,7 +72,7 @@ class _DiseasesListWidgetState extends State<DiseasesListWidget> {
               itemBuilder: (context, index) => Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
                 child: DiseaseCard(
-                  disease: demoDiseases[index],
+                  disease: filteredDemoDiseases[index],
                 ),
               ),
             );

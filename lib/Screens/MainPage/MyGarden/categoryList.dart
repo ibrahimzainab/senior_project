@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:senior_project/Screens/MainPage/MyGarden/info.dart';
 import 'package:senior_project/classes/plant.dart';
 
 import 'ListWidgets/articlesList.dart';
@@ -6,8 +7,9 @@ import 'ListWidgets/diseasesList.dart';
 import 'ListWidgets/insectsList.dart';
 
 class CategoryList extends StatefulWidget {
-  const CategoryList({Key key, @required this.plant}) : super(key: key);
+  const CategoryList({Key key, @required this.plant,@required this.searchKeyWord}) : super(key: key);
 
+  final String searchKeyWord;
   final Plant plant;
   @override
   _CategoryListState createState() => _CategoryListState();
@@ -69,9 +71,9 @@ class _CategoryListState extends State<CategoryList> {
                     topLeft: Radius.circular(25)),
               ),
             ),
-            if (selectedIndex == 0) InsectsListWidget(plant: widget.plant),
-            if (selectedIndex == 1) DiseasesListWidget(plant: widget.plant),
-            if (selectedIndex == 2) ArticlesListWidget(plant: widget.plant),
+            if (selectedIndex == 0) InsectsListWidget(plant: widget.plant, searchKeyWord: searchKeyWord,),
+            if (selectedIndex == 1) DiseasesListWidget(plant: widget.plant, searchKeyWord: searchKeyWord,),
+            if (selectedIndex == 2) ArticlesListWidget(plant: widget.plant, searchKeyWord: searchKeyWord,),
           ]),
         ),
       ],

@@ -4,6 +4,8 @@ import 'package:senior_project/constants.dart';
 
 import 'categoryList.dart';
 
+String searchKeyWord = '';
+
 class Info extends StatefulWidget {
   const Info({Key key, @required this.plant}) : super(key: key);
 
@@ -14,7 +16,6 @@ class Info extends StatefulWidget {
 }
 
 class _InfoState extends State<Info> {
-  //TODO: error bl size
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -54,6 +55,11 @@ class _InfoState extends State<Info> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: TextField(
+                onChanged: (value){
+                  setState(() {
+                    searchKeyWord = value;
+                  });
+                },
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -67,7 +73,7 @@ class _InfoState extends State<Info> {
               ),
             ),
             SizedBox(height: size.height * 0.01),
-            CategoryList(plant: widget.plant),
+            CategoryList(plant: widget.plant,searchKeyWord: searchKeyWord,),
           ],
         ),
       ),

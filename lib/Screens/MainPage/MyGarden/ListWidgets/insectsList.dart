@@ -9,10 +9,12 @@ import '../../../../constants.dart';
 
 PlantService _plantService = PlantService();
 List<Insect> demoInsects = [];
+List<Insect> filteredDemoInsects = [];
 
 class InsectsListWidget extends StatefulWidget {
-  const InsectsListWidget({Key key, @required this.plant}) : super(key: key);
+  const InsectsListWidget({Key key, @required this.plant,@required this.searchKeyWord}) : super(key: key);
 
+  final String searchKeyWord;
   final Plant plant;
 
   @override
@@ -20,6 +22,24 @@ class InsectsListWidget extends StatefulWidget {
 }
 
 class _InsectsListWidgetState extends State<InsectsListWidget> {
+
+  void _runFilter(String enteredKeyword) {
+    if (enteredKeyword.isEmpty) {
+      // if the search field is empty or only contains white-space, we'll display all users
+      setState(() {
+        filteredDemoInsects = demoInsects;
+      });
+    } else {
+      setState(() {
+        filteredDemoInsects = demoInsects
+            .where((insect) =>
+            insect.name.toLowerCase().contains(enteredKeyword.toLowerCase()))
+            .toList();
+      });
+      // we use the toLowerCase() method to make it case-insensitive
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
@@ -31,7 +51,8 @@ class _InsectsListWidgetState extends State<InsectsListWidget> {
             .then((value) => demoInsects = value),
         builder: (context, AsyncSnapshot<List<Insect>> snapshot) {
           if (snapshot.hasData) {
-            if (demoInsects.length == 0)
+            _runFilter(widget.searchKeyWord);
+            if (filteredDemoInsects.length == 0)
               return Center(
                 child: Text(
                   'No related insects.',
@@ -43,7 +64,7 @@ class _InsectsListWidgetState extends State<InsectsListWidget> {
               );
             else
               return GridView.builder(
-                itemCount: demoInsects.length,
+                itemCount: filteredDemoInsects.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 0,
@@ -54,7 +75,7 @@ class _InsectsListWidgetState extends State<InsectsListWidget> {
                     Padding(
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 10.0),
                       child: InsectCard(
-                        insect: demoInsects[index],
+                        insect: filteredDemoInsects[index],
                       ),
                     ),
               );
